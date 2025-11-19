@@ -30,6 +30,11 @@ short saveConfig(short difficulty, string language) {
     return 0;
 }
 
+short getRandomNumber(short from, short to) {
+    srand(time(NULL));
+    return (rand() % to) + from;
+}
+
 string getRandomWord(string words[]) {
     return "";
 }
