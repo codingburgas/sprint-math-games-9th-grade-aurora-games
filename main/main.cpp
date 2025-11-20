@@ -30,6 +30,30 @@ short saveConfig(short difficulty, string language) {
     return 0;
 }
 
+// Check if a letter is in the alphabet
+bool isLetterInAlphabet(char letter, string language) {
+    string alphabet;
+    if (language == "en") {
+        alphabet = "abcdefghijklmnopqrstuvwxyz";
+    }
+    else if (language == "bg") {
+        alphabet = "абвгдежзийклмнопрстуфхцчшщъьюя";
+    }
+    else if (language == "ru") {
+        alphabet = "абвгдеёжзийклмнопрстуфхцчшщъыьэюя";
+    }
+    else {
+        return false;
+    }
+    letter = tolower(letter);
+    for (short i = 0; i < alphabet.length(); i++) {
+        if (alphabet[i] == letter) {
+            return true;
+        }
+    }
+    return false;
+}
+
 short getRandomNumber(short from, short to) {
     srand(time(NULL));
     return (rand() % to) + from;
