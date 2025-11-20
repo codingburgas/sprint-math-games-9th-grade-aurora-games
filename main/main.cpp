@@ -98,6 +98,70 @@ string getRandomWord(short difficulty, string language, short randomNumber) {
     }
 }
 
+string getHintForRandomWord(short difficulty, string language, short randomNumber) {
+    // Hints
+
+    string hintsEn1Difficulty[30] = {};
+    string hintsEn2Difficulty[30] = {};
+    string hintsEn3Difficulty[30] = {};
+
+    string hintsBg1Difficulty[30] = {};
+    string hintsBg2Difficulty[30] = {};
+    string hintsBg3Difficulty[30] = {};
+
+    string hintsRu1Difficulty[30] = {};
+    string hintsRu2Difficulty[30] = {};
+    string hintsRu3Difficulty[30] = {};
+
+
+    switch (difficulty) {
+    case 1:
+        if (language == "en") {
+            return hintsEn1Difficulty[randomNumber];
+        }
+        else if (language == "bg") {
+            return hintsBg1Difficulty[randomNumber];
+        }
+        else if (language == "ru") {
+            return hintsRu1Difficulty[randomNumber];
+        }
+        else {
+            cout << "Incorrect language, try again";
+        }
+        break;
+
+    case 2:
+        if (language == "en") {
+            return hintsEn2Difficulty[randomNumber];
+        }
+        else if (language == "bg") {
+            return hintsBg2Difficulty[randomNumber];
+        }
+        else if (language == "ru") {
+            return hintsRu2Difficulty[randomNumber];
+        }
+        else {
+            cout << "Incorrect language, try again";
+        }
+        break;
+
+    case 3:
+        if (language == "en") {
+            return hintsEn3Difficulty[randomNumber];
+        }
+        else if (language == "bg") {
+            return hintsBg3Difficulty[randomNumber];
+        }
+        else if (language == "ru") {
+            return hintsRu3Difficulty[randomNumber];
+        }
+        else {
+            cout << "Incorrect language, try again";
+        }
+        break;
+    }
+}
+
 void showMainMenu() {
 
 }
