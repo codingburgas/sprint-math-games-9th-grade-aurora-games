@@ -35,8 +35,67 @@ short getRandomNumber(short from, short to) {
     return (rand() % to) + from;
 }
 
-string getRandomWord(string words[]) {
-    return "";
+string getRandomWord(short difficulty, string language, short randomNumber) {
+    // Words
+
+    string wordsEn1Difficulty[30] = {};
+    string wordsEn2Difficulty[30] = {};
+    string wordsEn3Difficulty[30] = {};
+
+    string wordsBg1Difficulty[30] = {};
+    string wordsBg2Difficulty[30] = {};
+    string wordsBg3Difficulty[30] = {};
+
+    string wordsRu1Difficulty[30] = {};
+    string wordsRu2Difficulty[30] = {};
+    string wordsRu3Difficulty[30] = {};
+
+    switch (difficulty) {
+        case 1:
+            if (language == "en") {
+                return wordsEn1Difficulty[randomNumber];
+            }
+            else if (language == "bg") {
+                return wordsBg1Difficulty[randomNumber];
+            }
+            else if (language == "ru") {
+                return wordsRu1Difficulty[randomNumber];
+            }
+            else {
+                cout << "Incorrect language, try again";
+            }
+            break;
+
+        case 2:
+            if (language == "en") {
+                return wordsEn2Difficulty[randomNumber];
+            }
+            else if (language == "bg") {
+                return wordsBg2Difficulty[randomNumber];
+            }
+            else if (language == "ru") {
+                return wordsRu2Difficulty[randomNumber];
+            }
+            else {
+                cout << "Incorrect language, try again";
+            }
+            break;
+
+        case 3:
+            if (language == "en") {
+                return wordsEn3Difficulty[randomNumber];
+            }
+            else if (language == "bg") {
+                return wordsBg3Difficulty[randomNumber];
+            }
+            else if (language == "ru") {
+                return wordsRu3Difficulty[randomNumber];
+            }
+            else {
+                cout << "Incorrect language, try again";
+            }
+            break;
+    }
 }
 
 void showMainMenu() {
