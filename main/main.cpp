@@ -41,17 +41,35 @@ short getRandomNumber(short from, short to) {
 string getRandomWord(short difficulty, string language, short randomNumber) {
     // Words
 
-    string wordsEn1Difficulty[30] = {};
-    string wordsEn2Difficulty[30] = {};
-    string wordsEn3Difficulty[30] = {};
+    string wordsEn1Difficulty[30] = { "Teacher", "Student", "Morning", "Brother", "Kitchen",
+        "Chicken", "Picture", "Address", "Problem", "Bedroom",
+        "Husband", "Evening", "Country", "Village", "Airport" };
+    string wordsEn2Difficulty[30] = { "Captain", "Manager", "History", "Weather", "Library",
+        "Success", "Message", "Journey", "Society", "Partner",
+        "Freedom", "Science", "Balance", "Opinion", "Officer" };
+    string wordsEn3Difficulty[30] = { "Anxiety", "Justice", "Cabinet", "Diamond", "Silence",
+        "Blanket", "Stomach", "Mystery", "Bicycle", "Economy",
+        "Disease", "Machine", "Gravity", "Thunder", "Volcano" };
 
-    string wordsBg1Difficulty[30] = {};
-    string wordsBg2Difficulty[30] = {};
-    string wordsBg3Difficulty[30] = {};
+    string wordsBg1Difficulty[30] = { "Приятел", "Магазин", "Автобус", "Картина", "Телефон",
+        "Роднина", "Отговор", "Планина", "Усмивка", "Проблем",
+        "Градина", "Подарък", "Закуска", "Играчка", "Седмица" };
+    string wordsBg2Difficulty[30] = { "Държава", "Природа", "Свобода", "История", "Болница",
+        "Цигулка", "Капитан", "Полицай", "Фотьойл", "Плодове",
+        "Вестник", "Самолет", "Стадион", "Надежда", "Маймуна" };
+    string wordsBg3Difficulty[30] = { "Коридор", "Пържола", "Столица", "Тениска", "Водопад",
+        "Минерал", "Дисплей", "Учебник", "Молитва", "Чувство",
+        "Миризма", "Шоколад", "Желание", "Решение", "Причина" };
 
-    string wordsRu1Difficulty[30] = {};
-    string wordsRu2Difficulty[30] = {};
-    string wordsRu3Difficulty[30] = {};
+    string wordsRu1Difficulty[30] = { "Телефон", "Магазин", "Человек", "Кровать", "Учитель",
+        "Капуста", "Комната", "Сосиска", "Барабан", "Медведь",
+        "Картина", "Автобус", "Ребенок", "Деревня", "Паспорт" };
+    string wordsRu2Difficulty[30] = { "Шоколад", "Рассвет", "Договор", "Загадка", "Корабль",
+        "Лягушка", "Комната", "Подарок", "Капитан", "Морковь",
+        "Генерал", "Скрипка", "Самолет", "Пылесос", "Бутылка" };
+    string wordsRu3Difficulty[30] = { "Скепсис", "Колодец", "Водопад", "Призрак", "Сметана",
+        "Диагноз", "Реакция", "Встреча", "Экватор", "Ящерица",
+        "Коридор", "Фонарик", "Рубашка", "Котлета", "Блокнот" };
 
     switch (difficulty) {
     case 1:
@@ -104,17 +122,35 @@ string getRandomWord(short difficulty, string language, short randomNumber) {
 string getHintForRandomWord(short difficulty, string language, short randomNumber) {
     // Hints
 
-    string hintsEn1Difficulty[30] = {};
-    string hintsEn2Difficulty[30] = {};
-    string hintsEn3Difficulty[30] = {};
+    string hintsEn1Difficulty[30] = {"Person", "Abstract/Time", "People", "House", "Food/Nature",
+    "Object", "Abstract", "Abstract", "House", "People", "Abstract/Time", "Nature/Place", "Place",
+    "Place"};
+    string hintsEn2Difficulty[30] = {"People", "People", "Abstract", "Nature", "Place",
+    "Abstract", "Object/Abstract", "Abstract", "Abstract", "People", "Abstract", "Abstract",
+    "Abstract", "Abstract", "People"};
+    string hintsEn3Difficulty[30] = { "Abstract/Feeling", "Abstract", "House/Object", "Object/Nature",
+    "Abstract", "House", "Body", "Abstract", "Object", "Abstract", "Abstract/Science", "Object",
+    "Science", "Thunder", "Nature" };
 
-    string hintsBg1Difficulty[30] = {};
-    string hintsBg2Difficulty[30] = {};
-    string hintsBg3Difficulty[30] = {};
+    string hintsBg1Difficulty[30] = {"Хора", "Място", "Обект", "Обект",
+    "Обект", "Хора", "Абстракция", "Природа", "Абстракция/Тяло", "Абстракция", "Дом/Природа", "Обект",
+    "Храна", "Обект", "Време" };
+    string hintsBg2Difficulty[30] = { "Място/Общество", "Природа", "Абстракция", "Абстракция",
+    "Място", "Обект/Музика", "Хора", "Хора", "Обект", "Храна", "Обект", "Обект",
+    "Място", "Абстракция", "Природа" };
+    string hintsBg3Difficulty[30] = { "Къща", "Храна", "Място", "Обект/Дрехи",
+    "Природа", "Природа", "Техника", "Обект", "Абстракция", "Абстракция", "Абстракция", "Храна",
+    "Абстракция", "Абстракция", "Абстракция" };
 
-    string hintsRu1Difficulty[30] = {};
-    string hintsRu2Difficulty[30] = {};
-    string hintsRu3Difficulty[30] = {};
+    string hintsRu1Difficulty[30] = { "Предмет", "Место", "Люди", "Дом",
+    "Люди", "Еда", "Дом", "Еда", "Предмет", "Природа", "Предмет", "Предмет",
+    "Люди", "Место", "Предмет" };
+    string hintsRu2Difficulty[30] = { "Абстракция/Предмет", "Люди", "Еда", "Люди",
+    "Предмет", "Предмет", "Дом", "Еда/Предмет", "Еда", "Природа", "Абстракция", "Абстракция",
+    "Предмет", "Природа", "Природа" };
+    string hintsRu3Difficulty[30] = { "Абстракция", "Дом/Природа", "Природа", "Мистика",
+    "Еда", "Наука", "Абстракция", "Абстракция", "Природа/Наука", "Природа", "Дом", "Предмет",
+    "Предмет", "Еда", "Предмет" };
 
 
     switch (difficulty) {
@@ -313,25 +349,8 @@ int main() {
     setlocale(LC_ALL, "ru");
     srand(time(NULL));
 
-    bool running = true;
-    string language = getLanguage();
-    short difficulty = getDifficulty();
-
-    while (running) {
-        showMainMenu();
-        short input;
-        cin >> input;
-        if (input == 1) {
-            screenClear();
-            showBeforeGameMenu();
-            cin >> input;
-            if (input == 1) {
-                short randomNumber = getRandomNumber(0, 30);
-                string word = getRandomWord(difficulty, language, randomNumber), hint = getHintForRandomWord(difficulty, language, randomNumber);
-                screenClear();
-                startGameWithBot(word, hint);
-            }
-        }
-    }
+    short num = getRandomNumber(0, 15);
+    short difficulty = getRandomNumber(1, 3);
+    cout << getRandomWord(difficulty, "bg", num) << getHintForRandomWord(difficulty, "bg", num);
     return 0;
 }
