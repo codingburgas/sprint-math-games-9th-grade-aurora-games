@@ -1,2 +1,5 @@
 ﻿  main.cpp
+C:\Users\enotx\OneDrive\Документы\SchoolProjects\sprint-math-games-9th-grade-aurora-games\main\main.cpp(321,69): warning C4267: аргумент: преобразование из "size_t" в "short"; возможна потеря данных
+C:\Users\enotx\OneDrive\Документы\SchoolProjects\sprint-math-games-9th-grade-aurora-games\main\main.cpp(466,15): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
+  LINK : не найден или не выполнена сборка C:\Users\enotx\OneDrive\Документы\SchoolProjects\sprint-math-games-9th-grade-aurora-games\main\x64\Debug\main.exe при последней инкрементной компоновке; выполняется полная компоновка
   main.vcxproj -> C:\Users\enotx\OneDrive\Документы\SchoolProjects\sprint-math-games-9th-grade-aurora-games\main\x64\Debug\main.exe

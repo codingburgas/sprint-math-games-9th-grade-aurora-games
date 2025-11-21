@@ -19,11 +19,11 @@ void screenClear() {
 }
 
 short getDifficulty() {
-    return 0;
+    return 1;
 }
 
 string getLanguage() {
-    return "";
+    return "ru";
 }
 
 short saveConfig(short difficulty, string language) {
@@ -41,35 +41,35 @@ short getRandomNumber(short from, short to) {
 string getRandomWord(short difficulty, string language, short randomNumber) {
     // Words
 
-    string wordsEn1Difficulty[30] = { "Teacher", "Student", "Morning", "Brother", "Kitchen",
-        "Chicken", "Picture", "Address", "Problem", "Bedroom",
-        "Husband", "Evening", "Country", "Village", "Airport" };
-    string wordsEn2Difficulty[30] = { "Captain", "Manager", "History", "Weather", "Library",
-        "Success", "Message", "Journey", "Society", "Partner",
-        "Freedom", "Science", "Balance", "Opinion", "Officer" };
-    string wordsEn3Difficulty[30] = { "Anxiety", "Justice", "Cabinet", "Diamond", "Silence",
-        "Blanket", "Stomach", "Mystery", "Bicycle", "Economy",
-        "Disease", "Machine", "Gravity", "Thunder", "Volcano" };
+    string wordsEn1Difficulty[15] = { "teacher", "student", "morning", "brother", "kitchen",
+    "chicken", "picture", "address", "problem", "bedroom",
+    "husband", "evening", "country", "village", "airport" };
+    string wordsEn2Difficulty[15] = { "captain", "manager", "history", "weather", "library",
+        "success", "message", "journey", "society", "partner",
+        "freedom", "science", "balance", "opinion", "officer" };
+    string wordsEn3Difficulty[15] = { "anxiety", "justice", "cabinet", "diamond", "silence",
+        "blanket", "stomach", "mystery", "bicycle", "economy",
+        "disease", "machine", "gravity", "thunder", "volcano" };
 
-    string wordsBg1Difficulty[30] = { "Приятел", "Магазин", "Автобус", "Картина", "Телефон",
-        "Роднина", "Отговор", "Планина", "Усмивка", "Проблем",
-        "Градина", "Подарък", "Закуска", "Играчка", "Седмица" };
-    string wordsBg2Difficulty[30] = { "Държава", "Природа", "Свобода", "История", "Болница",
-        "Цигулка", "Капитан", "Полицай", "Фотьойл", "Плодове",
-        "Вестник", "Самолет", "Стадион", "Надежда", "Маймуна" };
-    string wordsBg3Difficulty[30] = { "Коридор", "Пържола", "Столица", "Тениска", "Водопад",
-        "Минерал", "Дисплей", "Учебник", "Молитва", "Чувство",
-        "Миризма", "Шоколад", "Желание", "Решение", "Причина" };
+    string wordsBg1Difficulty[15] = { "приятел", "магазин", "автобус", "картина", "телефон",
+        "роднина", "отговор", "планина", "усмивка", "проблем",
+        "градина", "подарък", "закуска", "играчка", "седмица" };
+    string wordsBg2Difficulty[15] = { "държава", "природа", "свобода", "история", "болница",
+        "цигулка", "капитан", "полицаи", "фотьойл", "плодове",
+        "вестник", "самолет", "стадион", "надежда", "маймуна" };
+    string wordsBg3Difficulty[15] = { "коридор", "пържола", "столица", "тениска", "водопад",
+        "минерал", "дисплей", "учебник", "молитва", "чувство",
+        "миризма", "шоколад", "желание", "решение", "причина" };
 
-    string wordsRu1Difficulty[30] = { "Телефон", "Магазин", "Человек", "Кровать", "Учитель",
-        "Капуста", "Комната", "Сосиска", "Барабан", "Медведь",
-        "Картина", "Автобус", "Ребенок", "Деревня", "Паспорт" };
-    string wordsRu2Difficulty[30] = { "Шоколад", "Рассвет", "Договор", "Загадка", "Корабль",
-        "Лягушка", "Комната", "Подарок", "Капитан", "Морковь",
-        "Генерал", "Скрипка", "Самолет", "Пылесос", "Бутылка" };
-    string wordsRu3Difficulty[30] = { "Скепсис", "Колодец", "Водопад", "Призрак", "Сметана",
-        "Диагноз", "Реакция", "Встреча", "Экватор", "Ящерица",
-        "Коридор", "Фонарик", "Рубашка", "Котлета", "Блокнот" };
+    string wordsRu1Difficulty[15] = { "телефон", "магазин", "человек", "кровать", "учитель",
+        "капуста", "комната", "сосиска", "барабан", "медведь",
+        "картина", "автобус", "ребенок", "деревня", "паспорт" };
+    string wordsRu2Difficulty[15] = { "шоколад", "рассвет", "договор", "загадка", "корабль",
+        "лягушка", "комната", "подарок", "капитан", "морковь",
+        "генерал", "скрипка", "самолет", "пылесос", "бутылка" };
+    string wordsRu3Difficulty[15] = { "скепсис", "колодец", "водопад", "призрак", "сметана",
+        "диагноз", "реакция", "встреча", "экватор", "ящерица",
+        "коридор", "фонарик", "рубашка", "котлета", "блокнот" };
 
     switch (difficulty) {
     case 1:
@@ -81,9 +81,6 @@ string getRandomWord(short difficulty, string language, short randomNumber) {
         }
         else if (language == "ru") {
             return wordsRu1Difficulty[randomNumber];
-        }
-        else {
-            cout << "Incorrect language, try again";
         }
         break;
 
@@ -97,9 +94,6 @@ string getRandomWord(short difficulty, string language, short randomNumber) {
         else if (language == "ru") {
             return wordsRu2Difficulty[randomNumber];
         }
-        else {
-            cout << "Incorrect language, try again";
-        }
         break;
 
     case 3:
@@ -112,44 +106,42 @@ string getRandomWord(short difficulty, string language, short randomNumber) {
         else if (language == "ru") {
             return wordsRu3Difficulty[randomNumber];
         }
-        else {
-            cout << "Incorrect language, try again";
-        }
         break;
     }
+    return "";
 }
 
 string getHintForRandomWord(short difficulty, string language, short randomNumber) {
     // Hints
 
-    string hintsEn1Difficulty[30] = {"Person", "Abstract/Time", "People", "House", "Food/Nature",
-    "Object", "Abstract", "Abstract", "House", "People", "Abstract/Time", "Nature/Place", "Place",
-    "Place"};
-    string hintsEn2Difficulty[30] = {"People", "People", "Abstract", "Nature", "Place",
-    "Abstract", "Object/Abstract", "Abstract", "Abstract", "People", "Abstract", "Abstract",
-    "Abstract", "Abstract", "People"};
-    string hintsEn3Difficulty[30] = { "Abstract/Feeling", "Abstract", "House/Object", "Object/Nature",
-    "Abstract", "House", "Body", "Abstract", "Object", "Abstract", "Abstract/Science", "Object",
+    string hintsEn1Difficulty[15] = { "Person", "Abstract", "People", "House", "Food",
+    "Object", "Abstract", "Abstract", "House", "People", "Abstract", "Nature", "Place",
+    "Place" };
+    string hintsEn2Difficulty[15] = { "People", "People", "Abstract", "Nature", "Place",
+    "Abstract", "Object", "Abstract", "Abstract", "People", "Abstract", "Abstract",
+    "Abstract", "Abstract", "People" };
+    string hintsEn3Difficulty[15] = { "Abstract", "Abstract", "House", "Object",
+    "Abstract", "House", "Body", "Abstract", "Object", "Abstract", "Abstract", "Object",
     "Science", "Thunder", "Nature" };
 
-    string hintsBg1Difficulty[30] = {"Хора", "Място", "Обект", "Обект",
-    "Обект", "Хора", "Абстракция", "Природа", "Абстракция/Тяло", "Абстракция", "Дом/Природа", "Обект",
+    string hintsBg1Difficulty[15] = { "Хора", "Място", "Обект", "Обект",
+    "Обект", "Хора", "Абстракция", "Природа", "Абстракция", "Абстракция", "Дом", "Обект",
     "Храна", "Обект", "Време" };
-    string hintsBg2Difficulty[30] = { "Място/Общество", "Природа", "Абстракция", "Абстракция",
-    "Място", "Обект/Музика", "Хора", "Хора", "Обект", "Храна", "Обект", "Обект",
+    string hintsBg2Difficulty[15] = { "Място", "Природа", "Абстракция", "Абстракция",
+    "Място", "Обект", "Хора", "Хора", "Обект", "Храна", "Обект", "Обект",
     "Място", "Абстракция", "Природа" };
-    string hintsBg3Difficulty[30] = { "Къща", "Храна", "Място", "Обект/Дрехи",
+    string hintsBg3Difficulty[15] = { "Къща", "Храна", "Място", "Обект",
     "Природа", "Природа", "Техника", "Обект", "Абстракция", "Абстракция", "Абстракция", "Храна",
     "Абстракция", "Абстракция", "Абстракция" };
 
-    string hintsRu1Difficulty[30] = { "Предмет", "Место", "Люди", "Дом",
+    string hintsRu1Difficulty[15] = { "Предмет", "Место", "Люди", "Дом",
     "Люди", "Еда", "Дом", "Еда", "Предмет", "Природа", "Предмет", "Предмет",
     "Люди", "Место", "Предмет" };
-    string hintsRu2Difficulty[30] = { "Абстракция/Предмет", "Люди", "Еда", "Люди",
-    "Предмет", "Предмет", "Дом", "Еда/Предмет", "Еда", "Природа", "Абстракция", "Абстракция",
+    string hintsRu2Difficulty[15] = { "Абстракция", "Люди", "Еда", "Люди",
+    "Предмет", "Предмет", "Дом", "Еда", "Еда", "Природа", "Абстракция", "Абстракция",
     "Предмет", "Природа", "Природа" };
-    string hintsRu3Difficulty[30] = { "Абстракция", "Дом/Природа", "Природа", "Мистика",
-    "Еда", "Наука", "Абстракция", "Абстракция", "Природа/Наука", "Природа", "Дом", "Предмет",
+    string hintsRu3Difficulty[15] = { "Абстракция", "Дом", "Природа", "Мистика",
+    "Еда", "Наука", "Абстракция", "Абстракция", "Природа", "Природа", "Дом", "Предмет",
     "Предмет", "Еда", "Предмет" };
 
 
@@ -164,9 +156,6 @@ string getHintForRandomWord(short difficulty, string language, short randomNumbe
         else if (language == "ru") {
             return hintsRu1Difficulty[randomNumber];
         }
-        else {
-            cout << "Incorrect language, try again";
-        }
         break;
 
     case 2:
@@ -178,9 +167,6 @@ string getHintForRandomWord(short difficulty, string language, short randomNumbe
         }
         else if (language == "ru") {
             return hintsRu2Difficulty[randomNumber];
-        }
-        else {
-            cout << "Incorrect language, try again";
         }
         break;
 
@@ -194,11 +180,9 @@ string getHintForRandomWord(short difficulty, string language, short randomNumbe
         else if (language == "ru") {
             return hintsRu3Difficulty[randomNumber];
         }
-        else {
-            cout << "Incorrect language, try again";
-        }
         break;
     }
+    return "";
 }
 
 void showMainMenu() {
@@ -210,11 +194,17 @@ void displayWordState(char openedLetters[], string word) {
 }
 
 bool isWordGuessed(char openedLetters[], string word) {
-    return 0;
+    for (short i = 0; i < 7; i++) {
+        if (openedLetters[i] == ' ') {
+            return false;
+        }
+    }
+    return true;
 }
 
 bool isLetterGuessed(char letter, char guessedLetters[]) {
-    for (short i = 0; i < 7; i++) {
+    letter = tolower(letter);
+    for (short i = 0; i < 32; i++) {
         if (letter == guessedLetters[i]) {
             return true;
         }
@@ -222,12 +212,24 @@ bool isLetterGuessed(char letter, char guessedLetters[]) {
     return false;
 }
 
-void showGameMenu() {
-
+void showGameMenu(char openedLetters[], string hint) {
+    // TODO: this menu
+    cout << "WORD: ";
+    for (short i = 0; i < 7; i++) {
+        if (openedLetters[i] == ' ') cout << "_ ";
+        else cout << openedLetters[i] << " ";
+    }
+    cout << endl << "HINT: " << hint << endl;
+    cout << "1. Guess letter" << endl << "2. Guess word" << endl << "3. Exit" << endl << "> ";
 }
 
 void win(short who) {
-
+    if (1) {
+        // Player 1 wins
+    }
+    else {
+        // Player 2 wins
+    }
 }
 
 // Check if a letter is in the alphabet
@@ -266,64 +268,177 @@ short indexOfLetterInWord(char letter, string word) {
 
 bool isWordGuessedByWordGuess(string guess, string word) {
     string language = getLanguage();
+    if (guess.length() != 7) return false;
+
     for (short i = 0; i < 7; i++) {
-        if (!isLetterInAlphabet(guess[i], language) || guess[i] != word[i]) {
+        if (!isLetterInAlphabet(guess[i], language) || tolower(guess[i]) != tolower(word[i])) {
             return false;
         }
     }
     return true;
 }
 
+short howMuchLettersGuessed(char openedLetters[], string word) {
+    short result = 0;
+    for (short i = 0; i < 7; i++) {
+        if (openedLetters[i] != ' ') {
+            result++;
+        }
+    }
+    return result;
+}
+
+char getRandomUnGuessedLetter(string language, char guessedLetters[]) {
+    string alphabet;
+    if (language == "en") {
+        alphabet = "abcdefghijklmnopqrstuvwxyz";
+    }
+    else if (language == "bg") {
+        alphabet = "абвгдежзийклмнопрстуфхцчшщъьюя";
+    }
+    else if (language == "ru") {
+        alphabet = "абвгдеёжзийклмнопрстуфхцчшщъыьэюя";
+    }
+    else {
+        return ' ';
+    }
+
+    string candidates = "";
+    for (short i = 0; i < alphabet.length(); i++) {
+        bool isGuessed = false;
+        for (short j = 0; j < 32; j++) {
+            if (guessedLetters[j] == alphabet[i]) {
+                isGuessed = true;
+                break;
+            }
+        }
+        if (!isGuessed) {
+            candidates += alphabet[i];
+        }
+    }
+
+    if (candidates.length() > 0) {
+        short randomNumber = getRandomNumber(0, candidates.length() - 1);
+        return candidates[randomNumber];
+    }
+    return ' ';
+}
+
+void exitFromGame() {
+
+}
+
 void startGameWithBot(string word, string hint) {
-    char openedLetters[7] = { ' ', ' ', ' ', ' ', ' ', ' ', ' ' },
-        guessedLetters[32];
+    char openedLetters[7] = { ' ', ' ', ' ', ' ', ' ', ' ', ' ' };
+    char guessedLetters[32];
+
     short input, guessedLettersLength = 0;
     string language = getLanguage();
+    bool gameRunning = true;
+    bool isPlayerTurn = true;
 
-    while (!isWordGuessed(openedLetters, word)) {
-        showGameMenu();
-        cin >> input;
+    while (gameRunning && !isWordGuessed(openedLetters, word)) {
 
-        // Player guess letter
-        if (input == 1) {
-            char letter;
-            cin >> letter;
-            if (isLetterInAlphabet(letter, language)) {
+        if (isPlayerTurn) {
+            screenClear();
+            showGameMenu(openedLetters, hint);
+            cin >> input;
 
-                if (!isLetterGuessed(letter, guessedLetters)) {
-                    guessedLetters[guessedLettersLength++] = letter;
+            // Player's move
+            if (input == 1) { // Letter guess
+                char letter;
+                cin >> letter;
 
-                    short indexOfLetter = indexOfLetterInWord(letter, word);
-                    if (indexOfLetter > 0) {
-                        openedLetters[indexOfLetter] = letter;
+                if (isLetterInAlphabet(letter, language)) {
+                    if (!isLetterGuessed(letter, guessedLetters)) {
+                        guessedLetters[guessedLettersLength++] = tolower(letter);
+                        if (indexOfLetterInWord(letter, word) >= 0) {
+                            // Correct
+                            openedLetters[indexOfLetterInWord(letter, word)] = word[indexOfLetterInWord(letter, word)];
+                            isPlayerTurn = true;
+                        }
+                        else {
+                            // No letter in word
+                            isPlayerTurn = false;
+                        }
                     }
                     else {
-                        // TODO: Incorrect letter
+                        // Already guessed letter
+                        isPlayerTurn = false;
                     }
                 }
                 else {
-                    // TODO: Letter isn't in alphabet
+                    // Incorrect symbol
+                    isPlayerTurn = false;
                 }
-
             }
-            else {
-                cout << "Incorrect Input!";
+            else if (input == 2) { // Word guess
+                string guess;
+                cin >> guess;
+                if (isWordGuessedByWordGuess(guess, word)) {
+                    win(1);
+                    return;
+                }
+                else {
+                    // Wrong word
+                    wait(1);
+                    isPlayerTurn = false;
+                }
             }
-        }
+            else if (input == 3) { // Exit
+                exitFromGame();
+                return;
+            }
 
-        // Player guess word
-        else if (input == 2) {
-            string guess;
-            cin >> guess;
-            if (isWordGuessedByWordGuess(guess, word)) {
+            if (isWordGuessed(openedLetters, word)) {
                 win(1);
-            }
-            else {
-                // TODO: The word is guessed incorrect
+                return;
             }
         }
+        else {
+            screenClear();
+            showGameMenu(openedLetters, hint);
+            // Bot is thinking
+            wait(1.5);
 
-        screenClear();
+            bool botWinsNow = false;
+            short lettersOpenedCount = howMuchLettersGuessed(openedLetters, word);
+            if (lettersOpenedCount == 5) {
+                if (getRandomNumber(1, 8) == 1) {
+                    botWinsNow = true;
+                }
+            }
+            else if (lettersOpenedCount == 6) {
+                if (getRandomNumber(1, 5) != 1) {
+                    botWinsNow = true;
+                }
+            }
+            if (botWinsNow) {
+                win(2);
+                return;
+            }
+            else {
+                char botLetter = getRandomUnGuessedLetter(language, guessedLetters);
+                if (botLetter != ' ') {
+                    // Bot choose
+                    wait(1);
+                    guessedLetters[guessedLettersLength++] = botLetter;
+                    if (indexOfLetterInWord(botLetter, word) >= 0) {
+                        // Bot guessed correctly
+                        openedLetters[indexOfLetterInWord(botLetter, word)] = word[indexOfLetterInWord(botLetter, word)];
+                        isPlayerTurn = false;
+                    }
+                    else {
+                        // Bot missed
+                        isPlayerTurn = true;
+                    }
+                }
+            }
+            if (isWordGuessed(openedLetters, word)) {
+                win(2);
+                return;
+            }
+        }
     }
 }
 
@@ -346,11 +461,12 @@ void settingsMenu() {
 // Main
 
 int main() {
+    system("chcp 1251 >nul");
     setlocale(LC_ALL, "ru");
     srand(time(NULL));
 
     short num = getRandomNumber(0, 15);
-    short difficulty = getRandomNumber(1, 3);
-    cout << getRandomWord(difficulty, "bg", num) << getHintForRandomWord(difficulty, "bg", num);
+    startGameWithBot(getRandomWord(1, "ru", num), getHintForRandomWord(1, "ru", num));
+
     return 0;
 }
