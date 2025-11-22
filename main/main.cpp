@@ -191,7 +191,8 @@ void showMainMenu() {
 }
 
 void exitInMainMenu() {
-
+    // Exit in main menu
+    screenClear();
 }
 
 void displayWordState(char openedLetters[], string word) {
@@ -333,8 +334,21 @@ char getRandomUnGuessedLetter(string language, char guessedLetters[]) {
     return ' ';
 }
 
-void exitFromGame() {
+bool exitFromGame() {
+    char answer;
 
+    screenClear();
+    cout << "Are you sure you want to exit the game? (y/n) > ";
+    cin >> answer;
+    answer = tolower(answer);
+    if (answer == 'y') {
+        screenClear();
+        // Exit to main menu
+        return true;
+    }
+    // Player doesn't want to exit
+    screenClear();
+    return false;
 }
 
 void startGameWithBot(string word, string hint) {
@@ -396,8 +410,9 @@ void startGameWithBot(string word, string hint) {
                 }
             }
             else if (input == 3) { // Exit
-                exitFromGame();
-                return;
+                if (exitFromGame()) {
+                    return;
+                }
             }
             if (isWordGuessed(openedLetters, word)) {
                 win(1);
@@ -512,8 +527,9 @@ void startGame1v1(string word, string hint) {
                 }
             }
             else if (input == 3) { // Exit
-                exitFromGame();
-                return;
+                if (exitFromGame()) {
+                    return;
+                }
             }
             if (isWordGuessed(openedLetters, word)) {
                 win(1);
@@ -568,8 +584,9 @@ void startGame1v1(string word, string hint) {
                 }
             }
             else if (input == 3) { // Exit
-                exitFromGame();
-                return;
+                if (exitFromGame()) {
+                    return;
+                }
             }
             if (isWordGuessed(openedLetters, word)) {
                 win(2);
@@ -615,6 +632,7 @@ int main() {
 
         cin >> input;
         switch (input) {
+            // Play
         case 1:
             showBeforeGameMenu();
             cin >> input;
@@ -630,19 +648,18 @@ int main() {
                 break;
             }
             break;
-
+            // Options
         case 2:
 
             break;
-
+            // Rules
         case 3:
 
             break;
-
+            // Exit
         case 4:
-
+            return 0;
             break;
-
         default:
             // Incorrect input;
             break;
