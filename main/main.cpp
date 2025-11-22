@@ -298,7 +298,7 @@ short howMuchLettersGuessed(char openedLetters[], string word) {
     return result;
 }
 
-char getRandomUnGuessedLetter(string language, char guessedLetters[]) {
+char getRandomUnguessedLetter(string language, char guessedLetters[]) {
     string alphabet;
     if (language == "en") {
         alphabet = "abcdefghijklmnopqrstuvwxyz";
@@ -405,7 +405,6 @@ void startGameWithBot(string word, string hint) {
 
         if (isPlayerTurn) {
             screenClear();
-
             cout << "Player spin wheel...";
             onWheel = spinWheel();
             cout << endl << "Player have " << displayWheelVariants[onWheel] << " on wheel!";
@@ -445,7 +444,7 @@ void startGameWithBot(string word, string hint) {
                                     playerPoints *= 2;
                                 }
                                 else {
-                                    playerPoints = pointsOnWheel[onWheel];
+                                    playerPoints += pointsOnWheel[onWheel];
                                     openedLetters[indexOfLetterInWord(letter, word)] = word[indexOfLetterInWord(letter, word)];
                                 }
                                 isPlayerTurn = true;
@@ -492,48 +491,79 @@ void startGameWithBot(string word, string hint) {
         }
         else {
             screenClear();
+            cout << "Bot spin wheel...";
+            onWheel = spinWheel();
+            cout << endl << "Bot have " << displayWheelVariants[onWheel] << " on wheel!";
+            wait(3);
+            screenClear();
             showGameMenu(openedLetters, hint);
-            // Bot is thinking
-            wait(1.5);
 
-            bool botWinsNow = false;
-            short lettersOpenedCount = howMuchLettersGuessed(openedLetters, word);
-            if (lettersOpenedCount == 5) {
-                if (getRandomNumber(1, 8) == 1) {
-                    botWinsNow = true;
-                }
+            // B on wheel
+            if (onWheel == 0) {
+                playerPoints = 0;
+                isPlayerTurn = true;
             }
-            else if (lettersOpenedCount == 6) {
-                if (getRandomNumber(1, 5) != 1) {
-                    botWinsNow = true;
-                }
+            // + on wheel
+            else if (onWheel == 1) {
+                showPlusMenu();
+                input = getIndexOfRandomUnopenedLetter(openedLetters);
+                openedLetters[input] = word[input];
+                isPlayerTurn = true;
             }
-            if (botWinsNow) {
-                gameRunning = false;
-                win(2);
-                return;
+            // S on wheel
+            else if (onWheel == 2) {
+                isPlayerTurn = true;
             }
-            else {
-                char botLetter = getRandomUnGuessedLetter(language, guessedLetters);
-                if (botLetter != ' ') {
-                    // Bot choose
-                    wait(1);
-                    guessedLetters[guessedLettersLength++] = botLetter;
-                    if (indexOfLetterInWord(botLetter, word) >= 0) {
-                        // Bot guessed correctly
-                        openedLetters[indexOfLetterInWord(botLetter, word)] = word[indexOfLetterInWord(botLetter, word)];
-                        isPlayerTurn = false;
-                    }
-                    else {
-                        // Bot missed
-                        isPlayerTurn = true;
+            // Player have points on wheel
+            else if (onWheel >= 3) {
+                // Bot is thinking
+                wait(1.5);
+
+                bool botWinsNow = false;
+                short lettersOpenedCount = howMuchLettersGuessed(openedLetters, word);
+                if (lettersOpenedCount == 5) {
+                    if (getRandomNumber(1, 8) == 1) {
+                        botWinsNow = true;
                     }
                 }
-            }
-            if (isWordGuessed(openedLetters, word)) {
-                gameRunning = false;
-                win(2);
-                return;
+                else if (lettersOpenedCount == 6) {
+                    if (getRandomNumber(1, 5) != 1) {
+                        botWinsNow = true;
+                    }
+                }
+                if (botWinsNow) {
+                    gameRunning = false;
+                    win(2);
+                    return;
+                }
+                else {
+                    char botLetter = getRandomUnguessedLetter(language, guessedLetters);
+                    if (botLetter != ' ') {
+                        // Bot choose
+                        wait(1);
+                        guessedLetters[guessedLettersLength++] = botLetter;
+                        if (indexOfLetterInWord(botLetter, word) >= 0) {
+                            // Bot guessed correctly
+                            if (onWheel == 3) {
+                                botPoints *= 2;
+                            }
+                            else {
+                                botPoints += pointsOnWheel[onWheel];
+                                openedLetters[indexOfLetterInWord(botLetter, word)] = word[indexOfLetterInWord(botLetter, word)];
+                            }
+                            isPlayerTurn = false;
+                        }
+                        else {
+                            // Bot missed
+                            isPlayerTurn = true;
+                        }
+                    }
+                }
+                if (isWordGuessed(openedLetters, word)) {
+                    gameRunning = false;
+                    win(2);
+                    return;
+                }
             }
         }
     }
