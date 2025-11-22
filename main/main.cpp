@@ -377,6 +377,17 @@ void showPlusMenu() {
     cout << "Which letter do you want to know?" << endl << "> ";
 }
 
+short getIndexOfRandomUnopenedLetter(char openedLetters[]) {
+    short options[7], lastIndexInOptions = 0, random;
+    for (short i = 0; i < 7; i++) {
+        if (openedLetters[i] != ' ') {
+            options[lastIndexInOptions++] = i;
+        }
+    }
+    random = getRandomNumber(0, lastIndexInOptions - 1);
+    return options[random];
+}
+
 void startGameWithBot(string word, string hint) {
     char openedLetters[7] = { ' ', ' ', ' ', ' ', ' ', ' ', ' ' };
     char guessedLetters[32];
