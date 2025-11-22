@@ -390,7 +390,7 @@ short getIndexOfRandomUnopenedLetter(char openedLetters[]) {
 
 void startGameWithBot(string word, string hint) {
     char openedLetters[7] = { ' ', ' ', ' ', ' ', ' ', ' ', ' ' };
-    char guessedLetters[32] = { 0 };
+    char guessedLetters[33] = { 0 };
 
     short input, guessedLettersLength = 0, onWheel, playerPoints = 0, botPoints = 0,
         pointsOnWheel[12] = { 350, 400, 450, 500, 600, 650, 700, 750, 800, 850, 950, 1000 };
@@ -582,7 +582,7 @@ void startGameWithBot(string word, string hint) {
 
 void startGame1v1(string word, string hint) {
     char openedLetters[7] = { ' ', ' ', ' ', ' ', ' ', ' ', ' ' };
-    char guessedLetters[32] = { 0 };
+    char guessedLetters[33] = { 0 };
 
     short input, guessedLettersLength = 0, onWheel, player1Points = 0, player2Points = 0,
         pointsOnWheel[12] = { 350, 400, 450, 500, 600, 650, 700, 750, 800, 850, 950, 1000 };
