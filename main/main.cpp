@@ -31,7 +31,8 @@ short saveConfig(short difficulty, string language) {
 }
 
 void showBeforeGameMenu() {
-
+    screenClear();
+    cout << "1. Play with bot" << endl << "2. Play 1v1" << endl << "3. Exit" << endl << "> ";
 }
 
 short getRandomNumber(short from, short to) {
@@ -63,7 +64,7 @@ string getRandomWord(short difficulty, string language, short randomNumber) {
 
     string wordsRu1Difficulty[15] = { "телефон", "магазин", "человек", "кровать", "учитель",
         "капуста", "комната", "сосиска", "барабан", "медведь",
-        "картина", "автобус", "ребенок", "деревня", "паспорт" };
+        "картина", "автобус", "ребёнок", "деревня", "паспорт" };
     string wordsRu2Difficulty[15] = { "шоколад", "рассвет", "договор", "загадка", "корабль",
         "лягушка", "комната", "подарок", "капитан", "морковь",
         "генерал", "скрипка", "самолет", "пылесос", "бутылка" };
@@ -186,6 +187,10 @@ string getHintForRandomWord(short difficulty, string language, short randomNumbe
 }
 
 void showMainMenu() {
+    cout << "1. Play" << endl << "2. Options" << endl << "3. Rules" << endl << "4. Exit" << endl << "> ";
+}
+
+void exitInMainMenu() {
 
 }
 
@@ -224,12 +229,16 @@ void showGameMenu(char openedLetters[], string hint) {
 }
 
 void win(short who) {
-    if (1) {
+    screenClear();
+    if (who == 1) {
         // Player 1 wins
+        cout << "Player 1 wins!";
     }
     else {
         // Player 2 wins
+        cout << "Player 2 wins!";
     }
+    cout << endl << endl;
 }
 
 // Check if a letter is in the alphabet
@@ -376,20 +385,20 @@ void startGameWithBot(string word, string hint) {
                 string guess;
                 cin >> guess;
                 if (isWordGuessedByWordGuess(guess, word)) {
+                    gameRunning = false;
                     win(1);
                     return;
                 }
                 else {
                     // Wrong word
-                    wait(1);
-                    isPlayerTurn = false;
+                    gameRunning = false;
+                    win(2);
                 }
             }
             else if (input == 3) { // Exit
                 exitFromGame();
                 return;
             }
-
             if (isWordGuessed(openedLetters, word)) {
                 win(1);
                 return;
@@ -414,6 +423,7 @@ void startGameWithBot(string word, string hint) {
                 }
             }
             if (botWinsNow) {
+                gameRunning = false;
                 win(2);
                 return;
             }
@@ -433,6 +443,133 @@ void startGameWithBot(string word, string hint) {
                         isPlayerTurn = true;
                     }
                 }
+            }
+            if (isWordGuessed(openedLetters, word)) {
+                gameRunning = false;
+                win(2);
+                return;
+            }
+        }
+    }
+}
+
+void startGame1v1(string word, string hint) {
+    char openedLetters[7] = { ' ', ' ', ' ', ' ', ' ', ' ', ' ' };
+    char guessedLetters[32];
+
+    short input, guessedLettersLength = 0;
+    string language = getLanguage();
+    bool gameRunning = true;
+    bool isPlayer1Turn = true;
+
+    while (gameRunning && !isWordGuessed(openedLetters, word)) {
+
+        if (isPlayer1Turn) {
+            screenClear();
+            showGameMenu(openedLetters, hint);
+            cin >> input;
+
+            // Player 1 move
+            if (input == 1) { // Letter guess
+                char letter;
+                cin >> letter;
+
+                if (isLetterInAlphabet(letter, language)) {
+                    if (!isLetterGuessed(letter, guessedLetters)) {
+                        guessedLetters[guessedLettersLength++] = tolower(letter);
+                        if (indexOfLetterInWord(letter, word) >= 0) {
+                            // Correct
+                            openedLetters[indexOfLetterInWord(letter, word)] = word[indexOfLetterInWord(letter, word)];
+                            isPlayer1Turn = true;
+                        }
+                        else {
+                            // No letter in word
+                            isPlayer1Turn = false;
+                        }
+                    }
+                    else {
+                        // Already guessed letter
+                        isPlayer1Turn = false;
+                    }
+                }
+                else {
+                    // Incorrect symbol
+                    isPlayer1Turn = false;
+                }
+            }
+            else if (input == 2) { // Word guess
+                string guess;
+                cin >> guess;
+                if (isWordGuessedByWordGuess(guess, word)) {
+                    gameRunning = false;
+                    win(1);
+                    return;
+                }
+                else {
+                    // Wrong word
+                    gameRunning = false;
+                    win(2);
+                }
+            }
+            else if (input == 3) { // Exit
+                exitFromGame();
+                return;
+            }
+            if (isWordGuessed(openedLetters, word)) {
+                win(1);
+                return;
+            }
+        }
+        // Player 2 move
+        else {
+            screenClear();
+            showGameMenu(openedLetters, hint);
+            cin >> input;
+            // Player 2 is thinking
+            if (input == 1) { // Letter guess
+                char letter;
+                cin >> letter;
+
+                if (isLetterInAlphabet(letter, language)) {
+                    if (!isLetterGuessed(letter, guessedLetters)) {
+                        guessedLetters[guessedLettersLength++] = tolower(letter);
+                        if (indexOfLetterInWord(letter, word) >= 0) {
+                            // Correct
+                            openedLetters[indexOfLetterInWord(letter, word)] = word[indexOfLetterInWord(letter, word)];
+                            isPlayer1Turn = false;
+                        }
+                        else {
+                            // No letter in word
+                            isPlayer1Turn = true;
+                        }
+                    }
+                    else {
+                        // Already guessed letter
+                        isPlayer1Turn = true;
+                    }
+                }
+                else {
+                    // Incorrect symbol
+                    isPlayer1Turn = true;
+                }
+            }
+            else if (input == 2) { // Word guess
+                string guess;
+                cin >> guess;
+                if (isWordGuessedByWordGuess(guess, word)) {
+                    gameRunning = false;
+                    win(2);
+                    return;
+                }
+                else {
+                    // Wrong word
+                    gameRunning = false;
+                    win(1);
+                }
+            }
+            else if (input == 3) { // Exit
+                exitFromGame();
+                return;
             }
             if (isWordGuessed(openedLetters, word)) {
                 win(2);
@@ -465,8 +602,52 @@ int main() {
     setlocale(LC_ALL, "ru");
     srand(time(NULL));
 
-    short num = getRandomNumber(0, 15);
-    startGameWithBot(getRandomWord(1, "ru", num), getHintForRandomWord(1, "ru", num));
+    string language = getLanguage();
+    short input, difficulty = getDifficulty();
+    bool running = true;
+
+    while (running) {
+        showMainMenu();
+
+        short randomNumber = getRandomNumber(0, 14);
+        string word = getRandomWord(difficulty, language, randomNumber),
+            hint = getHintForRandomWord(difficulty, language, randomNumber);
+
+        cin >> input;
+        switch (input) {
+        case 1:
+            showBeforeGameMenu();
+            cin >> input;
+            switch (input) {
+            case 1:
+                startGameWithBot(word, hint);
+                break;
+            case 2:
+                startGame1v1(language, hint);
+                break;
+            case 3:
+                exitInMainMenu();
+                break;
+            }
+            break;
+
+        case 2:
+
+            break;
+
+        case 3:
+
+            break;
+
+        case 4:
+
+            break;
+
+        default:
+            // Incorrect input;
+            break;
+        }
+    }
 
     return 0;
 }
