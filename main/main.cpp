@@ -117,7 +117,7 @@ string getHintForRandomWord(short difficulty, string language, short randomNumbe
 
     string hintsEn1Difficulty[15] = { "Person", "Abstract", "People", "House", "Food",
     "Object", "Abstract", "Abstract", "House", "People", "Abstract", "Nature", "Place",
-    "Place" };
+    "Place" }; // TODO: Add hint
     string hintsEn2Difficulty[15] = { "People", "People", "Abstract", "Nature", "Place",
     "Abstract", "Object", "Abstract", "Abstract", "People", "Abstract", "Abstract",
     "Abstract", "Abstract", "People" };
@@ -390,10 +390,10 @@ short getIndexOfRandomUnopenedLetter(char openedLetters[]) {
 
 void startGameWithBot(string word, string hint) {
     char openedLetters[7] = { ' ', ' ', ' ', ' ', ' ', ' ', ' ' };
-    char guessedLetters[32];
+    char guessedLetters[32] = { 0 };
 
     short input, guessedLettersLength = 0, onWheel, playerPoints = 0, botPoints = 0,
-        pointsOnWheel[13] = { 350, 400, 450, 500, 600, 650, 700, 750, 800, 850, 950, 1000 };
+        pointsOnWheel[12] = { 350, 400, 450, 500, 600, 650, 700, 750, 800, 850, 950, 1000 };
     string language = getLanguage(), displayWheelVariants[16] = {
         "B", "+", "S", "X",
         "350", "400", "450", "500", "600", "650", "700", "750", "800", "850", "950", "1000"
@@ -444,9 +444,9 @@ void startGameWithBot(string word, string hint) {
                                     playerPoints *= 2;
                                 }
                                 else {
-                                    playerPoints += pointsOnWheel[onWheel];
-                                    openedLetters[indexOfLetterInWord(letter, word)] = word[indexOfLetterInWord(letter, word)];
+                                    playerPoints += pointsOnWheel[onWheel - 4];
                                 }
+                                openedLetters[indexOfLetterInWord(letter, word)] = word[indexOfLetterInWord(letter, word)];
                                 isPlayerTurn = true;
                             }
                             else {
@@ -548,9 +548,9 @@ void startGameWithBot(string word, string hint) {
                                 botPoints *= 2;
                             }
                             else {
-                                botPoints += pointsOnWheel[onWheel];
-                                openedLetters[indexOfLetterInWord(botLetter, word)] = word[indexOfLetterInWord(botLetter, word)];
+                                botPoints += pointsOnWheel[onWheel - 4];
                             }
+                            openedLetters[indexOfLetterInWord(botLetter, word)] = word[indexOfLetterInWord(botLetter, word)];
                             isPlayerTurn = false;
                         }
                         else {
@@ -571,10 +571,14 @@ void startGameWithBot(string word, string hint) {
 
 void startGame1v1(string word, string hint) {
     char openedLetters[7] = { ' ', ' ', ' ', ' ', ' ', ' ', ' ' };
-    char guessedLetters[32];
+    char guessedLetters[32] = { 0 };
 
-    short input, guessedLettersLength = 0;
-    string language = getLanguage();
+    short input, guessedLettersLength = 0, onWheel, player1Points = 0, player2Points = 0,
+        pointsOnWheel[12] = { 350, 400, 450, 500, 600, 650, 700, 750, 800, 850, 950, 1000 };
+    string language = getLanguage(), displayWheelVariants[16] = {
+        "B", "+", "S", "X",
+        "350", "400", "450", "500", "600", "650", "700", "750", "800", "850", "950", "1000"
+    };
     bool gameRunning = true;
     bool isPlayer1Turn = true;
 
@@ -582,116 +586,173 @@ void startGame1v1(string word, string hint) {
 
         if (isPlayer1Turn) {
             screenClear();
-            showGameMenu(openedLetters, hint);
-            cin >> input;
+            cout << "Player 1 spin wheel...";
+            onWheel = spinWheel();
+            cout << endl << "Player 1 have " << displayWheelVariants[onWheel] << " on wheel!";
+            wait(3);
+            screenClear();
 
-            // Player 1 move
-            if (input == 1) { // Letter guess
-                char letter;
-                cin >> letter;
+            // B on wheel
+            if (onWheel == 0) {
+                player1Points = 0;
+                isPlayer1Turn = false;
+            }
+            // + on wheel
+            else if (onWheel == 1) {
+                showPlusMenu();
+                cin >> input;
+                openedLetters[input] = word[input];
+                isPlayer1Turn = false;
+            }
+            // S on wheel
+            else if (onWheel == 2) {
+                isPlayer1Turn = false;
+            }
+            // Player have points on wheel
+            else if (onWheel >= 3) {
+                showGameMenu(openedLetters, hint);
+                cin >> input;
 
-                if (isLetterInAlphabet(letter, language)) {
-                    if (!isLetterGuessed(letter, guessedLetters)) {
-                        guessedLetters[guessedLettersLength++] = tolower(letter);
-                        if (indexOfLetterInWord(letter, word) >= 0) {
-                            // Correct
-                            openedLetters[indexOfLetterInWord(letter, word)] = word[indexOfLetterInWord(letter, word)];
-                            isPlayer1Turn = true;
+                // Player 1 move
+                if (input == 1) { // Letter guess
+                    char letter;
+                    cin >> letter;
+
+                    if (isLetterInAlphabet(letter, language)) {
+                        if (!isLetterGuessed(letter, guessedLetters)) {
+                            guessedLetters[guessedLettersLength++] = tolower(letter);
+                            if (indexOfLetterInWord(letter, word) >= 0) {
+                                // Correct
+                                if (onWheel == 3) {
+                                    player1Points *= 2;
+                                }
+                                else {
+                                    player1Points += pointsOnWheel[onWheel - 4];
+                                }
+                                openedLetters[indexOfLetterInWord(letter, word)] = word[indexOfLetterInWord(letter, word)];
+                                isPlayer1Turn = true;
+                            }
+                            else {
+                                // No letter in word
+                                isPlayer1Turn = false;
+                            }
                         }
                         else {
-                            // No letter in word
+                            // Already guessed letter
                             isPlayer1Turn = false;
                         }
                     }
                     else {
-                        // Already guessed letter
+                        // Incorrect symbol
                         isPlayer1Turn = false;
                     }
                 }
-                else {
-                    // Incorrect symbol
-                    isPlayer1Turn = false;
+                else if (input == 2) { // Word guess
+                    string guess;
+                    cin >> guess;
+                    if (isWordGuessedByWordGuess(guess, word)) {
+                        gameRunning = false;
+                        win(1);
+                        return;
+                    }
+                    else {
+                        // Wrong word
+                        gameRunning = false;
+                        win(2);
+                    }
                 }
-            }
-            else if (input == 2) { // Word guess
-                string guess;
-                cin >> guess;
-                if (isWordGuessedByWordGuess(guess, word)) {
-                    gameRunning = false;
+                else if (input == 3) { // Exit
+                    if (exitFromGame()) {
+                        return;
+                    }
+                }
+                if (isWordGuessed(openedLetters, word)) {
                     win(1);
                     return;
                 }
-                else {
-                    // Wrong word
-                    gameRunning = false;
-                    win(2);
+            }
+            // Player 2 move
+            else {
+                screenClear();
+                // B on wheel
+                if (onWheel == 0) {
+                    player1Points = 0;
+                    isPlayer1Turn = true;
                 }
-            }
-            else if (input == 3) { // Exit
-                if (exitFromGame()) {
-                    return;
+                // + on wheel
+                else if (onWheel == 1) {
+                    showPlusMenu();
+                    cin >> input;
+                    openedLetters[input] = word[input];
+                    isPlayer1Turn = true;
                 }
-            }
-            if (isWordGuessed(openedLetters, word)) {
-                win(1);
-                return;
-            }
-        }
-        // Player 2 move
-        else {
-            screenClear();
-            showGameMenu(openedLetters, hint);
-            cin >> input;
-            // Player 2 is thinking
-            if (input == 1) { // Letter guess
-                char letter;
-                cin >> letter;
+                // S on wheel
+                else if (onWheel == 2) {
+                    isPlayer1Turn = true;
+                }
+                // Player have points on wheel
+                else if (onWheel >= 3) {
 
-                if (isLetterInAlphabet(letter, language)) {
-                    if (!isLetterGuessed(letter, guessedLetters)) {
-                        guessedLetters[guessedLettersLength++] = tolower(letter);
-                        if (indexOfLetterInWord(letter, word) >= 0) {
-                            // Correct
-                            openedLetters[indexOfLetterInWord(letter, word)] = word[indexOfLetterInWord(letter, word)];
-                            isPlayer1Turn = false;
+                    showGameMenu(openedLetters, hint);
+                    cin >> input;
+                    // Player 2 is thinking
+                    if (input == 1) { // Letter guess
+                        char letter;
+                        cin >> letter;
+
+                        if (isLetterInAlphabet(letter, language)) {
+                            if (!isLetterGuessed(letter, guessedLetters)) {
+                                guessedLetters[guessedLettersLength++] = tolower(letter);
+                                if (indexOfLetterInWord(letter, word) >= 0) {
+                                    // Correct
+                                    if (onWheel == 3) {
+                                        player2Points *= 2;
+                                    }
+                                    else {
+                                        player2Points += pointsOnWheel[onWheel - 4];
+                                    }
+                                    openedLetters[indexOfLetterInWord(letter, word)] = word[indexOfLetterInWord(letter, word)];
+                                    isPlayer1Turn = false;
+                                }
+                                else {
+                                    // No letter in word
+                                    isPlayer1Turn = true;
+                                }
+                            }
+                            else {
+                                // Already guessed letter
+                                isPlayer1Turn = true;
+                            }
                         }
                         else {
-                            // No letter in word
+                            // Incorrect symbol
                             isPlayer1Turn = true;
                         }
                     }
-                    else {
-                        // Already guessed letter
-                        isPlayer1Turn = true;
+                    else if (input == 2) { // Word guess
+                        string guess;
+                        cin >> guess;
+                        if (isWordGuessedByWordGuess(guess, word)) {
+                            gameRunning = false;
+                            win(2);
+                            return;
+                        }
+                        else {
+                            // Wrong word
+                            gameRunning = false;
+                            win(1);
+                        }
+                    }
+                    else if (input == 3) { // Exit
+                        if (exitFromGame()) {
+                            return;
+                        }
+                    }
+                    if (isWordGuessed(openedLetters, word)) {
+                        win(2);
+                        return;
                     }
                 }
-                else {
-                    // Incorrect symbol
-                    isPlayer1Turn = true;
-                }
-            }
-            else if (input == 2) { // Word guess
-                string guess;
-                cin >> guess;
-                if (isWordGuessedByWordGuess(guess, word)) {
-                    gameRunning = false;
-                    win(2);
-                    return;
-                }
-                else {
-                    // Wrong word
-                    gameRunning = false;
-                    win(1);
-                }
-            }
-            else if (input == 3) { // Exit
-                if (exitFromGame()) {
-                    return;
-                }
-            }
-            if (isWordGuessed(openedLetters, word)) {
-                win(2);
-                return;
             }
         }
     }
@@ -738,7 +799,7 @@ int main() {
                 startGameWithBot(word, hint);
                 break;
             case 2:
-                startGame1v1(language, hint);
+                startGame1v1(word, hint);
                 break;
             case 3:
                 exitInMainMenu();
