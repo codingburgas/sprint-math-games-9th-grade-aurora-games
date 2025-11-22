@@ -23,7 +23,7 @@ short getDifficulty() {
 }
 
 string getLanguage() {
-    return "ru";
+    return "en";
 }
 
 short saveConfig(short difficulty, string language) {
@@ -351,6 +351,27 @@ bool exitFromGame() {
     return false;
 }
 
+short spinWheel() {
+    short wheelVariants[16] = { 0, 1, 2, 3, // Special
+        350, 400, 450, 500, 600, 650, 700, 750, 800, 850, 950, 1000 }; // Points
+    short currentIndex = getRandomNumber(0, 15);
+    short steps = getRandomNumber(30, 50);
+    float delay = 0.05;
+
+    for (short i = 0; i < steps; i++) {
+        currentIndex++;
+        if (currentIndex >= 16) {
+            currentIndex = 0;
+        }
+        if (steps - i < 15) {
+            delay += 0.1;
+        }
+        wait(delay);
+    }
+
+    return wheelVariants[currentIndex];
+}
+
 void startGameWithBot(string word, string hint) {
     char openedLetters[7] = { ' ', ' ', ' ', ' ', ' ', ' ', ' ' };
     char guessedLetters[32];
@@ -594,10 +615,6 @@ void startGame1v1(string word, string hint) {
             }
         }
     }
-}
-
-bool checkLetter(char letter, char openedLetters[], string word) {
-    return 0;
 }
 
 void chooseLanguage() {
