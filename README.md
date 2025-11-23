@@ -3,11 +3,11 @@ Wheel of Fortune is an educational word guessing game where players guess letter
 Players earn points for correct guesses and can win by revealing the entire word
 
 ### Technologies Used
-C++ programming language
-Teams
-Word
-PowerPoint
-Visual Studio Code
+- C++ programming language
+- Teams
+- Word
+- PowerPoint
+- Visual Studio Code
 
 ### How to play
 1. The game starts by displaying a hidden word represented by underscores and a hint related to the word.
@@ -16,7 +16,7 @@ Visual Studio Code
 4. Players earn points for each correct letter guessed
 5. The game continues untill the entire word is revealed.
 
-1. ## Features
+## Features
 - Spinning wheel with points and penalties  
 - Letter and full-word guessing  
 - Score system   
@@ -25,7 +25,7 @@ Visual Studio Code
 ### Rules
 1. Players can only guess one letter at a time.
 2. Each one of them spins the wheel before guessing to determine points or penalties.
-3. If a players gets "+"
+3. If a players gets "+" (under construction)
 4. If a player gets "0", they lose their turn.
 5. If a player guesses a letter that has already been revealed, they lose their turn.
 6. Players can choose to guess the entire word at any time, but an incorrect guess results game loss.
