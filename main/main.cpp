@@ -5,8 +5,10 @@
 
 using namespace std;
 
-string language = "en";
-int difficulty = 1;
+//string language = "en";
+//int difficulty = 1;
+string difficulty;
+string language;
 
 void showMainMenu();
 void startGameWithBot(string word, string hint);
@@ -28,16 +30,63 @@ void screenClear() {
     system("cls");
 }
 
-short getDifficulty() {
-    return difficulty;
-}
+void putData() {
+    string path = "data.txt";
+    ifstream fin;
+    fin.open(path);
 
-string getLanguage() {
-    return language;
-}
+    if (!fin.is_open())
+    {
+        cout << "Error: File can not be opened" << endl;
+    }
+    else
+    {
 
-short saveConfig(short difficulty, string language) {
-    return 0;
+        if (getline(fin, language)) {
+
+            if (getline(fin, difficulty)) {
+
+                cout << language << endl;
+                cout << difficulty << endl;
+
+            }
+            else {
+                cout << "Error: only one parameter found: " << language << endl;
+            }
+
+        }
+        else {
+            cout << "Error: File is empty" << endl;
+        }
+    }
+
+    fin.close();
+}
+void getData() {
+    string path = "data.txt";
+    ofstream fout;
+    fout.open(path, ios::out);
+
+    if (!fout.is_open())
+    {
+        cout << "Error: File can not be opened" << endl;
+    }
+    else {
+        if (!(cin >> language)) {
+            fout.close();
+            return;
+        }
+
+        if (!(cin >> difficulty)) {
+            fout.close();
+            return;
+        }
+
+        fout << language << endl;
+        fout << difficulty << endl;
+
+        fout.close();
+    }
 }
 
 void showBeforeGameMenu() {
