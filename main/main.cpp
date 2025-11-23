@@ -125,18 +125,18 @@ string getRandomWord(short difficulty, string language, short randomNumber) {
 string getHintForRandomWord(short difficulty, string language, short randomNumber) {
     // Hints
 
-    string hintsEn1Difficulty[15] = { "Person", "Abstract", "People", "House", "Food",
+    string hintsEn1Difficulty[15] = { "People", "People", "Abstract", "People", "House", "Food",
     "Object", "Abstract", "Abstract", "House", "People", "Abstract", "Nature", "Place",
-    "Place" }; // TODO: Add hint
+    "Place" }; 
     string hintsEn2Difficulty[15] = { "People", "People", "Abstract", "Nature", "Place",
     "Abstract", "Object", "Abstract", "Abstract", "People", "Abstract", "Abstract",
     "Abstract", "Abstract", "People" };
     string hintsEn3Difficulty[15] = { "Abstract", "Abstract", "House", "Object",
     "Abstract", "House", "Body", "Abstract", "Object", "Abstract", "Abstract", "Object",
-    "Science", "Thunder", "Nature" };
+    "Science", "Nature", "Nature" };
 
     string hintsBg1Difficulty[15] = { "Хора", "Място", "Обект", "Обект",
-    "Обект", "Хора", "Абстракция", "Природа", "Абстракция", "Абстракция", "Дом", "Обект",
+    "Обект", "Хора", "Абстракция", "Природа", "Абстракция", "Абстракция", "Природа", "Обект",
     "Храна", "Обект", "Време" };
     string hintsBg2Difficulty[15] = { "Място", "Природа", "Абстракция", "Абстракция",
     "Място", "Обект", "Хора", "Хора", "Обект", "Храна", "Обект", "Обект",
