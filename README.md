@@ -1,1 +1,28 @@
-[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/durmtwmj)
+## Wheel of Fortune Game
+Wheel of Fortune is an educational word guessing game where players guess letters to reveal  a hidden word with the help of hints.
+Players earn points for correct guesses and can win by revealing the entire word
+
+### Technologies Used
+C++ programming language
+
+
+### How to play
+1. The game starts by displaying a hidden word represented by underscores and a hint related to the word.
+2. Players/bots take turns guessing letters.
+3. If a guessed letter is in the word, it is revealed in its correct position(s).
+4. Players earn points for each correct letter guessed
+5. The game continues untill the entire word is revealed.
+
+1. ## Features
+- Spinning wheel with points and penalties  
+- Letter and full-word guessing  
+- Score system   
+- Simple console interface  
+
+### Rules
+1. Players can only guess one letter at a time.
+2. If a player guesses a letter that has already been revealed, they lose their turn.
+3.Players can choose to guess the entire word at any time, but an incorrect guess results in a penalty.
+4. The game ends when the entire word is revealed or a player correctly guesses the full word.
+
+1. ## How to Run the Game
