@@ -5,6 +5,16 @@
 
 using namespace std;
 
+string language = "en";
+int difficulty = 1;
+
+void showMainMenu();
+void startGameWithBot(string word, string hint);
+void startGame1v1(string word, string hint);
+void exitInMainMenu();
+void chooseLanguage();
+void chooseDifficulty();
+
 // Functions
 
 // Function for waiting for time (Time in seconds)
@@ -19,11 +29,11 @@ void screenClear() {
 }
 
 short getDifficulty() {
-    return 1;
+    return difficulty;
 }
 
 string getLanguage() {
-    return "ru";
+    return language;
 }
 
 short saveConfig(short difficulty, string language) {
@@ -186,9 +196,145 @@ string getHintForRandomWord(short difficulty, string language, short randomNumbe
     return "";
 }
 
-void showMainMenu() {
-    cout << "1. Play" << endl << "2. Options" << endl << "3. Rules" << endl << "4. Exit" << endl << "> ";
+void settingsMenu() {
+    screenClear();
+    int input;
+    cout << R"(
+                        +----------------------------+
+                        |          SETTINGS          |
+                        +----------------------------+
+                        |  1) Change Language        |
+                        |  2) Change Difficulty      |
+                        |  3) Back                   |
+                        +----------------------------+
+)";
+    cin >> input;
+    cout << ">";
+
+    switch (input) {
+        case 1:
+            chooseLanguage();
+            break;
+        case 2: 
+            chooseDifficulty();
+            break;
+        case 3:
+            showMainMenu();
+            break;
+    }
 }
+
+void chooseLanguage() {
+    screenClear();
+    int input;
+    cout << R"(
+                        +----------------------------+
+                        |       LANGUAGE SELECT      |
+                        +----------------------------+
+                        |  1) English                |
+                        |  2) Bulgarian              |
+                        |  3) Russian                |
+                        |  4) Back                   |
+                        +----------------------------+
+)";
+    cin >> input;
+    cout << ">";
+
+    switch (input) {
+    case 1:
+        language = "en";
+        break;
+    case 2:
+        language = "bg";
+        break;
+    case 3:
+        language = "ru";
+        break;
+    case 4:
+        settingsMenu();
+        break;
+    }
+
+    settingsMenu();
+
+}
+
+void startGame() {
+    string language = getLanguage();
+    short input, difficulty = getDifficulty();
+    bool running = true;
+
+    short randomNumber = getRandomNumber(0, 14);
+    string word = getRandomWord(difficulty, language, randomNumber),
+        hint = getHintForRandomWord(difficulty, language, randomNumber);
+
+    showBeforeGameMenu();
+    cin >> input;
+    switch (input) {
+    case 1:
+        startGameWithBot("коридор", hint);
+        break;
+    case 2:
+        startGame1v1(word, hint);
+        break;
+    case 3:
+        exitInMainMenu();
+        break;
+    }
+}
+
+void about() {
+    
+}
+
+void showMainMenu() {
+    screenClear();
+
+    int input;
+
+    ifstream file("../images/welcome.txt");   // relative path
+
+    if (!file.is_open()) {
+        cout << "Cannot open file!\n";
+    }
+
+    string line;
+    while (getline(file, line)) {
+        cout << line << "\n";
+    }
+
+    file.close();
+    cout << R"(
+                        +----------------------------+
+                        |       WHEEL OF WORDS       |
+                        +----------------------------+
+                        |  1) Start Game             |
+                        |  2) Settings               |
+                        |  3) About                  |
+                        |  4) Exit                   |
+                        +----------------------------+
+)";
+    cout << ">";
+    cin >> input;
+
+    switch (input) {
+        case 1:
+            startGame();
+            break;
+        case 2:
+            settingsMenu();
+            break;
+        case 3:
+            about();
+        case 4:
+            exitInMainMenu();
+            break;
+    }
+
+
+}
+
+
 
 void exitInMainMenu() {
     // Exit in main menu
@@ -787,15 +933,40 @@ void startGame1v1(string word, string hint) {
     }
 }
 
-void chooseLanguage() {
-
-}
-
 void chooseDifficulty() {
+    screenClear();
+    int input;
+    cout << R"(
+                        +----------------------------------------------------------+
+                        |                    DIFFICULTY LEVEL                      |
+                        +----------------------------------------------------------+
+                        |  1) Easy (Short words, common vacabulary)                |
+                        |  2) Normal (Medium length words, varied difficulty)      |
+                        |  3) Hard (Long words, rare vacabulary)                   |
+                        |  4) Back                                                 |
+                        +----------------------------------------------------------+
+)";
+    cin >> input;
+    cout << ">";
 
+    switch (input) {
+    case 1:
+        difficulty = 1;
+        break;
+    case 2:
+        difficulty = 2;
+        break;
+    case 3:
+        difficulty = 3;
+        break;
+    case 4:
+        settingsMenu();
+    }
+
+    settingsMenu();
 }
 
-void settingsMenu() {
+void rulesMenu() {
 
 }
 
@@ -806,52 +977,7 @@ int main() {
     setlocale(LC_ALL, "ru");
     srand(time(NULL));
 
-    string language = getLanguage();
-    short input, difficulty = getDifficulty();
-    bool running = true;
-
-    while (running) {
-        showMainMenu();
-
-        short randomNumber = getRandomNumber(0, 14);
-        string word = getRandomWord(difficulty, language, randomNumber),
-            hint = getHintForRandomWord(difficulty, language, randomNumber);
-
-        cin >> input;
-        switch (input) {
-            // Play
-        case 1:
-            showBeforeGameMenu();
-            cin >> input;
-            switch (input) {
-            case 1:
-                startGameWithBot("коридор", hint);
-                break;
-            case 2:
-                startGame1v1(word, hint);
-                break;
-            case 3:
-                exitInMainMenu();
-                break;
-            }
-            break;
-            // Options
-        case 2:
-
-            break;
-            // Rules
-        case 3:
-
-            break;
-            // Exit
-        case 4:
-            return 0;
-            break;
-        default:
-            // Incorrect input;
-            break;
-        }
-    }
+    showMainMenu();
 
     return 0;
 }
