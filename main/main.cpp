@@ -26,6 +26,10 @@ void screenClear() {
     system("cls");
 }
 
+void rulesMenu() {
+
+}
+
 void chooseLanguage() {
     screenClear();
     int input;
@@ -398,7 +402,7 @@ void showMainMenu() {
             cin >> input;
             switch (input) {
             case 1:
-                startGameWithBot("коридор", hint);
+                startGameWithBot(word, hint);
                 break;
             case 2:
                 startGame1v1(word, hint);
@@ -410,15 +414,15 @@ void showMainMenu() {
             break;
             // Options
         case 2:
-
+            settingsMenu();
             break;
             // Rules
         case 3:
-
+            rulesMenu();
             break;
             // Exit
         case 4:
-            exit;
+            return;
             break;
         default:
             // Incorrect input;
@@ -721,6 +725,9 @@ void startGameWithBot(string word, string hint) {
                         return;
                     }
                 }
+                else {
+                    // Incorrect input
+                }
             }
             if (isWordGuessed(openedLetters, word)) {
                 win(1);
@@ -915,6 +922,9 @@ void startGame1v1(string word, string hint) {
                         return;
                     }
                 }
+                else {
+                    // Incorrect input
+                }
                 if (isWordGuessed(openedLetters, word)) {
                     win(1);
                     return;
@@ -1019,10 +1029,6 @@ void startGame1v1(string word, string hint) {
     }
 }
 
-void rulesMenu() {
-
-}
-
 // Main
 
 int main() {
@@ -1032,6 +1038,5 @@ int main() {
 
     putData();
     showMainMenu();
-
     return 0;
 }
