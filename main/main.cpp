@@ -5,17 +5,13 @@
 
 using namespace std;
 
-//string language = "en";
-//int difficulty = 1;
 string difficulty;
 string language;
 
 void showMainMenu();
 void startGameWithBot(string word, string hint);
 void startGame1v1(string word, string hint);
-void exitInMainMenu();
-void chooseLanguage();
-void chooseDifficulty();
+void settingsMenu();
 
 // Functions
 
@@ -28,6 +24,102 @@ void wait(double seconds) {
 // Console cleaning function
 void screenClear() {
     system("cls");
+}
+
+void chooseLanguage() {
+    screenClear();
+    int input;
+    cout << R"(
+                        +----------------------------+
+                        |       LANGUAGE SELECT      |
+                        +----------------------------+
+                        |  1) English                |
+                        |  2) Bulgarian              |
+                        |  3) Russian                |
+                        |  4) Back                   |
+                        +----------------------------+
+    )";
+    cin >> input;
+    cout << "> ";
+
+    switch (input) {
+    case 1:
+        language = "en";
+        break;
+    case 2:
+        language = "bg";
+        break;
+    case 3:
+        language = "ru";
+        break;
+    case 4:
+        settingsMenu();
+        break;
+    }
+
+    settingsMenu();
+
+}
+
+void chooseDifficulty() {
+    screenClear();
+    int input;
+    cout << R"(
+                        +----------------------------------------------------------+
+                        |                    DIFFICULTY LEVEL                      |
+                        +----------------------------------------------------------+
+                        |  1) Easy (Short words, common vacabulary)                |
+                        |  2) Normal (Medium length words, varied difficulty)      |
+                        |  3) Hard (Long words, rare vacabulary)                   |
+                        |  4) Back                                                 |
+                        +----------------------------------------------------------+
+)";
+    cin >> input;
+    cout << ">";
+
+    switch (input) {
+    case 1:
+        difficulty = 1;
+        break;
+    case 2:
+        difficulty = 2;
+        break;
+    case 3:
+        difficulty = 3;
+        break;
+    case 4:
+        settingsMenu();
+    }
+
+    settingsMenu();
+}
+
+void settingsMenu() {
+    screenClear();
+    int input;
+    cout << R"(
+                        +----------------------------+
+                        |          SETTINGS          |
+                        +----------------------------+
+                        |  1) Change Language        |
+                        |  2) Change Difficulty      |
+                        |  3) Back                   |
+                        +----------------------------+
+)";
+    cout << "> ";
+    cin >> input;
+
+    switch (input) {
+    case 1:
+        chooseLanguage();
+        break;
+    case 2:
+        chooseDifficulty();
+        break;
+    case 3:
+        showMainMenu();
+        break;
+    }
 }
 
 void putData() {
@@ -62,6 +154,7 @@ void putData() {
 
     fin.close();
 }
+
 void getData() {
     string path = "data.txt";
     ofstream fout;
@@ -94,11 +187,16 @@ void showBeforeGameMenu() {
     cout << "1. Play with bot" << endl << "2. Play 1v1" << endl << "3. Exit" << endl << "> ";
 }
 
+void exitInMainMenu() {
+    screenClear();
+    showMainMenu();
+}
+
 short getRandomNumber(short from, short to) {
     return from + rand() % (to - from + 1);
 }
 
-string getRandomWord(short difficulty, string language, short randomNumber) {
+string getRandomWord(string difficulty, string language, short randomNumber) {
     // Words
 
     string wordsEn1Difficulty[15] = { "teacher", "student", "morning", "brother", "kitchen",
@@ -131,8 +229,7 @@ string getRandomWord(short difficulty, string language, short randomNumber) {
         "диагноз", "реакция", "встреча", "экватор", "ящерица",
         "коридор", "фонарик", "рубашка", "котлета", "блокнот" };
 
-    switch (difficulty) {
-    case 1:
+    if (difficulty == "1") {
         if (language == "en") {
             return wordsEn1Difficulty[randomNumber];
         }
@@ -142,9 +239,9 @@ string getRandomWord(short difficulty, string language, short randomNumber) {
         else if (language == "ru") {
             return wordsRu1Difficulty[randomNumber];
         }
-        break;
+    }
 
-    case 2:
+    else if (difficulty == "2") {
         if (language == "en") {
             return wordsEn2Difficulty[randomNumber];
         }
@@ -154,9 +251,9 @@ string getRandomWord(short difficulty, string language, short randomNumber) {
         else if (language == "ru") {
             return wordsRu2Difficulty[randomNumber];
         }
-        break;
+    }
 
-    case 3:
+    else if (difficulty == "3") {
         if (language == "en") {
             return wordsEn3Difficulty[randomNumber];
         }
@@ -166,12 +263,11 @@ string getRandomWord(short difficulty, string language, short randomNumber) {
         else if (language == "ru") {
             return wordsRu3Difficulty[randomNumber];
         }
-        break;
     }
-    return "";
+    return wordsEn2Difficulty[randomNumber];
 }
 
-string getHintForRandomWord(short difficulty, string language, short randomNumber) {
+string getHintForRandomWord(string difficulty, string language, short randomNumber) {
     // Hints
 
     string hintsEn1Difficulty[15] = { "People", "People", "Abstract", "People", "House", "Food",
@@ -205,8 +301,7 @@ string getHintForRandomWord(short difficulty, string language, short randomNumbe
     "Предмет", "Еда", "Предмет" };
 
 
-    switch (difficulty) {
-    case 1:
+    if (difficulty == "1") {
         if (language == "en") {
             return hintsEn1Difficulty[randomNumber];
         }
@@ -216,9 +311,9 @@ string getHintForRandomWord(short difficulty, string language, short randomNumbe
         else if (language == "ru") {
             return hintsRu1Difficulty[randomNumber];
         }
-        break;
+    }
 
-    case 2:
+    else if (difficulty == "2") {
         if (language == "en") {
             return hintsEn2Difficulty[randomNumber];
         }
@@ -228,9 +323,9 @@ string getHintForRandomWord(short difficulty, string language, short randomNumbe
         else if (language == "ru") {
             return hintsRu2Difficulty[randomNumber];
         }
-        break;
+    }
 
-    case 3:
+    else if  (difficulty == "3") {
         if (language == "en") {
             return hintsEn3Difficulty[randomNumber];
         }
@@ -240,77 +335,12 @@ string getHintForRandomWord(short difficulty, string language, short randomNumbe
         else if (language == "ru") {
             return hintsRu3Difficulty[randomNumber];
         }
-        break;
     }
-    return "";
-}
-
-void settingsMenu() {
-    screenClear();
-    int input;
-    cout << R"(
-                        +----------------------------+
-                        |          SETTINGS          |
-                        +----------------------------+
-                        |  1) Change Language        |
-                        |  2) Change Difficulty      |
-                        |  3) Back                   |
-                        +----------------------------+
-)";
-    cin >> input;
-    cout << ">";
-
-    switch (input) {
-        case 1:
-            chooseLanguage();
-            break;
-        case 2: 
-            chooseDifficulty();
-            break;
-        case 3:
-            showMainMenu();
-            break;
-    }
-}
-
-void chooseLanguage() {
-    screenClear();
-    int input;
-    cout << R"(
-                        +----------------------------+
-                        |       LANGUAGE SELECT      |
-                        +----------------------------+
-                        |  1) English                |
-                        |  2) Bulgarian              |
-                        |  3) Russian                |
-                        |  4) Back                   |
-                        +----------------------------+
-)";
-    cin >> input;
-    cout << ">";
-
-    switch (input) {
-    case 1:
-        language = "en";
-        break;
-    case 2:
-        language = "bg";
-        break;
-    case 3:
-        language = "ru";
-        break;
-    case 4:
-        settingsMenu();
-        break;
-    }
-
-    settingsMenu();
-
+    return hintsEn2Difficulty[randomNumber];
 }
 
 void startGame() {
-    string language = getLanguage();
-    short input, difficulty = getDifficulty();
+    short input;
     bool running = true;
 
     short randomNumber = getRandomNumber(0, 14);
@@ -339,20 +369,6 @@ void about() {
 void showMainMenu() {
     screenClear();
 
-    int input;
-
-    ifstream file("../images/welcome.txt");   // relative path
-
-    if (!file.is_open()) {
-        cout << "Cannot open file!\n";
-    }
-
-    string line;
-    while (getline(file, line)) {
-        cout << line << "\n";
-    }
-
-    file.close();
     cout << R"(
                         +----------------------------+
                         |       WHEEL OF WORDS       |
@@ -362,31 +378,53 @@ void showMainMenu() {
                         |  3) About                  |
                         |  4) Exit                   |
                         +----------------------------+
-)";
-    cout << ">";
-    cin >> input;
+    )";
+    cout << "> ";
 
-    switch (input) {
+    short input;
+    bool running = true;
+
+    while (running) {
+
+        short randomNumber = getRandomNumber(0, 14);
+        string word = getRandomWord(difficulty, language, randomNumber),
+            hint = getHintForRandomWord(difficulty, language, randomNumber);
+
+        cin >> input;
+        switch (input) {
+            // Play
         case 1:
-            startGame();
+            showBeforeGameMenu();
+            cin >> input;
+            switch (input) {
+            case 1:
+                startGameWithBot("коридор", hint);
+                break;
+            case 2:
+                startGame1v1(word, hint);
+                break;
+            case 3:
+                exitInMainMenu();
+                break;
+            }
             break;
+            // Options
         case 2:
-            settingsMenu();
+
             break;
+            // Rules
         case 3:
-            about();
-        case 4:
-            exitInMainMenu();
+
             break;
+            // Exit
+        case 4:
+            exit;
+            break;
+        default:
+            // Incorrect input;
+            break;
+        }
     }
-
-
-}
-
-
-
-void exitInMainMenu() {
-    // Exit in main menu
     screenClear();
 }
 
@@ -472,7 +510,6 @@ short indexOfLetterInWord(char letter, string word) {
 }
 
 bool isWordGuessedByWordGuess(string guess, string word) {
-    string language = getLanguage();
     if (guess.length() != 7) return false;
 
     for (short i = 0; i < 7; i++) {
@@ -589,7 +626,7 @@ void startGameWithBot(string word, string hint) {
 
     short input, guessedLettersLength = 0, onWheel, playerPoints = 0, botPoints = 0,
         pointsOnWheel[12] = { 350, 400, 450, 500, 600, 650, 700, 750, 800, 850, 950, 1000 };
-    string language = getLanguage(), displayWheelVariants[16] = {
+    string displayWheelVariants[16] = {
         "B", "+", "S", "X",
         "350", "400", "450", "500", "600", "650", "700", "750", "800", "850", "950", "1000"
     };
@@ -781,7 +818,7 @@ void startGame1v1(string word, string hint) {
 
     short input, guessedLettersLength = 0, onWheel, player1Points = 0, player2Points = 0,
         pointsOnWheel[12] = { 350, 400, 450, 500, 600, 650, 700, 750, 800, 850, 950, 1000 };
-    string language = getLanguage(), displayWheelVariants[16] = {
+    string displayWheelVariants[16] = {
         "B", "+", "S", "X",
         "350", "400", "450", "500", "600", "650", "700", "750", "800", "850", "950", "1000"
     };
@@ -982,39 +1019,6 @@ void startGame1v1(string word, string hint) {
     }
 }
 
-void chooseDifficulty() {
-    screenClear();
-    int input;
-    cout << R"(
-                        +----------------------------------------------------------+
-                        |                    DIFFICULTY LEVEL                      |
-                        +----------------------------------------------------------+
-                        |  1) Easy (Short words, common vacabulary)                |
-                        |  2) Normal (Medium length words, varied difficulty)      |
-                        |  3) Hard (Long words, rare vacabulary)                   |
-                        |  4) Back                                                 |
-                        +----------------------------------------------------------+
-)";
-    cin >> input;
-    cout << ">";
-
-    switch (input) {
-    case 1:
-        difficulty = 1;
-        break;
-    case 2:
-        difficulty = 2;
-        break;
-    case 3:
-        difficulty = 3;
-        break;
-    case 4:
-        settingsMenu();
-    }
-
-    settingsMenu();
-}
-
 void rulesMenu() {
 
 }
@@ -1026,6 +1030,7 @@ int main() {
     setlocale(LC_ALL, "ru");
     srand(time(NULL));
 
+    putData();
     showMainMenu();
 
     return 0;
