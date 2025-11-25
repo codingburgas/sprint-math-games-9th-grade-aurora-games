@@ -30,6 +30,23 @@ void rulesMenu() {
 
 }
 
+void putData() {
+    string path = "data.txt";
+    ofstream fout;
+    fout.open(path, ios::out);
+
+    if (!fout.is_open())
+    {
+        cout << "Error: File can not be opened" << endl;
+    }
+    else
+    {
+        fout << language << endl;
+        fout << difficulty << endl;
+        fout.close();
+    }
+}
+
 void chooseLanguage() {
     screenClear();
     int input;
@@ -43,18 +60,21 @@ void chooseLanguage() {
                         |  4) Back                   |
                         +----------------------------+
     )";
-    cin >> input;
     cout << "> ";
+    cin >> input;
 
     switch (input) {
     case 1:
         language = "en";
+        putData();
         break;
     case 2:
         language = "bg";
+        putData();
         break;
     case 3:
         language = "ru";
+        putData();
         break;
     case 4:
         settingsMenu();
@@ -72,27 +92,31 @@ void chooseDifficulty() {
                         +----------------------------------------------------------+
                         |                    DIFFICULTY LEVEL                      |
                         +----------------------------------------------------------+
-                        |  1) Easy (Short words, common vacabulary)                |
-                        |  2) Normal (Medium length words, varied difficulty)      |
-                        |  3) Hard (Long words, rare vacabulary)                   |
+                        |  1) Easy (Common vacabulary)                             |
+                        |  2) Normal (Varied difficulty)                           |
+                        |  3) Hard (Rare vacabulary)                               |
                         |  4) Back                                                 |
                         +----------------------------------------------------------+
 )";
     cin >> input;
-    cout << ">";
+    cout << "> ";
 
     switch (input) {
     case 1:
-        difficulty = 1;
+        difficulty = "1";
+        putData();
         break;
     case 2:
-        difficulty = 2;
+        difficulty = "2";
+        putData();
         break;
     case 3:
-        difficulty = 3;
+        difficulty = "3";
+        putData();
         break;
     case 4:
         settingsMenu();
+        break;
     }
 
     settingsMenu();
@@ -126,7 +150,7 @@ void settingsMenu() {
     }
 }
 
-void putData() {
+void getData() {
     string path = "data.txt";
     ifstream fin;
     fin.open(path);
@@ -157,33 +181,6 @@ void putData() {
     }
 
     fin.close();
-}
-
-void getData() {
-    string path = "data.txt";
-    ofstream fout;
-    fout.open(path, ios::out);
-
-    if (!fout.is_open())
-    {
-        cout << "Error: File can not be opened" << endl;
-    }
-    else {
-        if (!(cin >> language)) {
-            fout.close();
-            return;
-        }
-
-        if (!(cin >> difficulty)) {
-            fout.close();
-            return;
-        }
-
-        fout << language << endl;
-        fout << difficulty << endl;
-
-        fout.close();
-    }
 }
 
 void showBeforeGameMenu() {
@@ -722,6 +719,7 @@ void startGameWithBot(string word, string hint) {
                 }
                 else if (input == 3) { // Exit
                     if (exitFromGame()) {
+                        showMainMenu();
                         return;
                     }
                 }
@@ -919,6 +917,7 @@ void startGame1v1(string word, string hint) {
                 }
                 else if (input == 3) { // Exit
                     if (exitFromGame()) {
+                        showMainMenu();
                         return;
                     }
                 }
@@ -1017,6 +1016,7 @@ void startGame1v1(string word, string hint) {
                 }
                 else if (input == 3) { // Exit
                     if (exitFromGame()) {
+                        showMainMenu();                        
                         return;
                     }
                 }
@@ -1036,7 +1036,7 @@ int main() {
     setlocale(LC_ALL, "ru");
     srand(time(NULL));
 
-    putData();
+    getData();
     showMainMenu();
     return 0;
 }
