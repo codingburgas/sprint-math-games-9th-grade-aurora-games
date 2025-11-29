@@ -584,16 +584,41 @@ bool exitFromGame() {
     return false;
 }
 
+void wheelAnimation(short currentIndex) {
+    string displayWheelVariants[20] = {
+       "850", "950", " B ", " + ", " S ", " X ",
+       "350", "400", "450", "500", "600", "650", "700", "750", "800", "850", "950", " B ", " + "
+    };
+    currentIndex += 2;
+    screenClear();
+    cout << R"(
+                       \   /
+                        \ /
+     +-------+-------+-------+-------+-------+ 
+    )";
+    cout << " |  " << displayWheelVariants[currentIndex - 2] << "  |  ";
+    cout << displayWheelVariants[currentIndex - 1] << "  |  ";
+    cout << displayWheelVariants[currentIndex] << "  |  ";
+    cout << displayWheelVariants[currentIndex + 1] << "  |  ";
+    cout << displayWheelVariants[currentIndex + 2] << "  |";
+    cout << R"(
+     +-------+-------+-------+-------+-------+
+                        / \
+                       /   \
+    )";
+}
+
 short spinWheel() {
-    short wheelVariants[16] = { 0, 1, 2, 3, // Special
-        4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15 }; // Points
+    short wheelVariants[15] = { 0, 1, 2, 3, // Special
+        4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14}; // Points
     short currentIndex = getRandomNumber(0, 15);
     short steps = getRandomNumber(30, 50);
     float delay = 0.05;
 
     for (short i = 0; i < steps; i++) {
+        wheelAnimation(currentIndex);
         currentIndex++;
-        if (currentIndex >= 16) {
+        if (currentIndex >= 15) {
             currentIndex = 0;
         }
         if (steps - i < 15) {
@@ -626,10 +651,10 @@ void startGameWithBot(string word, string hint) {
     char guessedLetters[33] = { 0 };
 
     short input, guessedLettersLength = 0, onWheel, playerPoints = 0, botPoints = 0,
-        pointsOnWheel[12] = { 350, 400, 450, 500, 600, 650, 700, 750, 800, 850, 950, 1000 };
-    string displayWheelVariants[16] = {
+        pointsOnWheel[11] = { 350, 400, 450, 500, 600, 650, 700, 750, 800, 850, 950};
+    string displayWheelVariants[15] = {
         "B", "+", "S", "X",
-        "350", "400", "450", "500", "600", "650", "700", "750", "800", "850", "950", "1000"
+        "350", "400", "450", "500", "600", "650", "700", "750", "800", "850", "950"
     };
     bool gameRunning = true;
     bool isPlayerTurn = true;
@@ -638,7 +663,7 @@ void startGameWithBot(string word, string hint) {
 
         if (isPlayerTurn) {
             screenClear();
-            cout << "Player spin wheel...";
+            cout << "Player spins wheel..." << endl;
             onWheel = spinWheel();
             cout << endl << "Player have " << displayWheelVariants[onWheel] << " on wheel!";
             wait(3);
@@ -734,7 +759,7 @@ void startGameWithBot(string word, string hint) {
         }
         else {
             screenClear();
-            cout << "Bot spin wheel...";
+            cout << "Bot spins wheel..." << endl;
             onWheel = spinWheel();
             cout << endl << "Bot have " << displayWheelVariants[onWheel] << " on wheel!";
             wait(3);
@@ -822,10 +847,10 @@ void startGame1v1(string word, string hint) {
     char guessedLetters[33] = { 0 };
 
     short input, guessedLettersLength = 0, onWheel, player1Points = 0, player2Points = 0,
-        pointsOnWheel[12] = { 350, 400, 450, 500, 600, 650, 700, 750, 800, 850, 950, 1000 };
-    string displayWheelVariants[16] = {
+        pointsOnWheel[11] = { 350, 400, 450, 500, 600, 650, 700, 750, 800, 850, 950};
+    string displayWheelVariants[15] = {
         "B", "+", "S", "X",
-        "350", "400", "450", "500", "600", "650", "700", "750", "800", "850", "950", "1000"
+        "350", "400", "450", "500", "600", "650", "700", "750", "800", "850", "950"
     };
     bool gameRunning = true;
     bool isPlayer1Turn = true;
