@@ -72,9 +72,9 @@ void chooseDifficulty() {
                         +----------------------------------------------------------+
                         |                    DIFFICULTY LEVEL                      |
                         +----------------------------------------------------------+
-                        |  1) Easy (Short words, common vacabulary)                |
-                        |  2) Normal (Medium length words, varied difficulty)      |
-                        |  3) Hard (Long words, rare vacabulary)                   |
+                        |  1) Easy (Common vocabulary)                             |
+                        |  2) Normal (Intermediate difficulty)                     |
+                        |  3) Hard (Complex vocabulary)                            |
                         |  4) Back                                                 |
                         +----------------------------------------------------------+
 )";
@@ -188,7 +188,7 @@ void getData(short inputLanguage, short inputDifficulty) {
 
 void showBeforeGameMenu() {
     screenClear();
-    cout << "1. Play with bot" << endl << "2. Play 1v1" << endl << "3. Exit" << endl << "> ";
+    cout << "1. Play with a bot" << endl << "2. Play PvP" << endl << "3. Exit" << endl << "> ";
 }
 
 void exitInMainMenu() {
@@ -355,7 +355,7 @@ void startGame() {
     cin >> input;
     switch (input) {
     case 1:
-        startGameWithBot("коридор", hint);
+        startGameWithBot(word, hint);
         break;
     case 2:
         startGame1v1(word, hint);
@@ -653,10 +653,10 @@ void startGameWithBot(string word, string hint) {
     char guessedLetters[33] = { 0 };
 
     short input, guessedLettersLength = 0, onWheel, playerPoints = 0, botPoints = 0,
-        pointsOnWheel[11] = { 350, 400, 450, 500, 600, 650, 700, 750, 800, 850, 950};
+        pointsOnWheel[11] = { 350, 400, 450, 500, 600, 650, 700, 750, 800, 850, 950 };
     string displayWheelVariants[15] = {
         "B", "+", "S", "X",
-        "350", "400", "450", "500", "600", "650", "700", "750", "800", "850", "950"};
+        "350", "400", "450", "500", "600", "650", "700", "750", "800", "850", "950" };
     bool gameRunning = true;
     bool isPlayerTurn = true;
 
@@ -664,9 +664,9 @@ void startGameWithBot(string word, string hint) {
 
         if (isPlayerTurn) {
             screenClear();
-            cout << "Player spin wheel...";
+            cout << "Player spins the wheel...";
             onWheel = spinWheel();
-            cout << endl << "Player have " << displayWheelVariants[onWheel] << " on wheel!";
+            cout << endl << "Player has " << displayWheelVariants[onWheel] << " on wheel!";
             wait(3);
             screenClear();
 
@@ -716,13 +716,13 @@ void startGameWithBot(string word, string hint) {
                                 isPlayerTurn = true;
                             }
                             else {
-                                cout << "No letter in word!";
+                                cout << "No letters in the word!";
                                 wait(2);
                                 isPlayerTurn = false;
                             }
                         }
                         else {
-                            cout << "Already guessed letter!";
+                            cout << "Already guessed the letter!";
                             wait(2);
                             isPlayerTurn = false;
                         }
@@ -765,9 +765,9 @@ void startGameWithBot(string word, string hint) {
         }
         else {
             screenClear();
-            cout << "Bot spin wheel...";
+            cout << "Bot spins the wheel...";
             onWheel = spinWheel();
-            cout << endl << "Bot have " << displayWheelVariants[onWheel] << " on wheel!";
+            cout << endl << "Bot has " << displayWheelVariants[onWheel] << " on wheel!";
             wait(3);
             screenClear();
             showGameMenu(openedLetters, hint, playerPoints, botPoints);
@@ -855,10 +855,10 @@ void startGame1v1(string word, string hint) {
     char guessedLetters[33] = { 0 };
 
     short input, guessedLettersLength = 0, onWheel, player1Points = 0, player2Points = 0,
-        pointsOnWheel[11] = { 350, 400, 450, 500, 600, 650, 700, 750, 800, 850, 950};
+        pointsOnWheel[11] = { 350, 400, 450, 500, 600, 650, 700, 750, 800, 850, 950 };
     string displayWheelVariants[16] = {
         "B", "+", "S", "X",
-        "350", "400", "450", "500", "600", "650", "700", "750", "800", "850", "950"};
+        "350", "400", "450", "500", "600", "650", "700", "750", "800", "850", "950" };
     bool gameRunning = true;
     bool isPlayer1Turn = true;
 
@@ -866,9 +866,9 @@ void startGame1v1(string word, string hint) {
 
         if (isPlayer1Turn) {
             screenClear();
-            cout << "Player 1 spin wheel...";
+            cout << "Player 1 spins wheel...";
             onWheel = spinWheel();
-            cout << endl << "Player 1 have " << displayWheelVariants[onWheel] << " on wheel!";
+            cout << endl << "Player 1 has" << displayWheelVariants[onWheel] << " on wheel!";
             wait(3);
             screenClear();
 
@@ -931,13 +931,13 @@ void startGame1v1(string word, string hint) {
                                 isPlayer1Turn = true;
                             }
                             else {
-                                cout << "No letter in word!";
+                                cout << "No letter in the word!";
                                 wait(2);
                                 isPlayer1Turn = false;
                             }
                         }
                         else {
-                            cout << "Already guessed letter!";
+                            cout << "Already guessed the letter!";
                             wait(2);
                             isPlayer1Turn = false;
                         }
@@ -980,9 +980,9 @@ void startGame1v1(string word, string hint) {
         // Player 2 move
         else {
             screenClear();
-            cout << "Player 2 spin wheel...";
+            cout << "Player 2 spins wheel...";
             onWheel = spinWheel();
-            cout << endl << "Player 2 have " << displayWheelVariants[onWheel] << " on wheel!";
+            cout << endl << "Player 2 has " << displayWheelVariants[onWheel] << " on wheel!";
             wait(3);
             screenClear();
 
@@ -1010,7 +1010,7 @@ void startGame1v1(string word, string hint) {
             // Player have points on wheel
             else if (onWheel >= 3) {
                 cout << word << endl;
-                showGameMenu(openedLetters, hint, player1Points,player2Points);
+                showGameMenu(openedLetters, hint, player1Points, player2Points);
                 cin >> input;
                 if (cin.fail()) {
                     cin.clear();
@@ -1044,13 +1044,13 @@ void startGame1v1(string word, string hint) {
                                 isPlayer1Turn = false;
                             }
                             else {
-                                cout << "No letter in word!";
+                                cout << "No letter in the word!";
                                 wait(2);
                                 isPlayer1Turn = true;
                             }
                         }
                         else {
-                            cout << "Already guessed letter!";
+                            cout << "Already guessed the letter!";
                             wait(2);
                             isPlayer1Turn = true;
                         }
