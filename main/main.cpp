@@ -147,7 +147,15 @@ void putData() {
 
             }
             else {
-                cout << "Error: only one parameter found: " << language << endl;
+                cout << R"(
+                    +--------------------------------------+
+                    |              ERROR                   |
+                    +--------------------------------------+
+                    |  Only one parameter found:           |
+                    |  )" << language << R"(                 |
+                    +--------------------------------------+
+)" << endl;
+
             }
 
         }
@@ -188,7 +196,18 @@ void getData(short inputLanguage, short inputDifficulty) {
 
 void showBeforeGameMenu() {
     screenClear();
-    cout << "1. Play with a bot" << endl << "2. Play PvP" << endl << "3. Exit" << endl << "> ";
+    cout << R"(
+                    +----------------------------+
+                    |         MAIN MENU          |
+                    +----------------------------+
+                    |  1) Play with a bot        |
+                    |  2) Play PvP               |
+                    |  3) Exit                   |
+                    +----------------------------+
+                    |  >                         |
+                    +----------------------------+
+)" << endl;
+
 }
 
 void exitInMainMenu() {
