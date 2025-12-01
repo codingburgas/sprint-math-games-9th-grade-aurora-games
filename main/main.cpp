@@ -656,10 +656,10 @@ void wheelAnimation(short currentIndex) {
      +-------+-------+-------+-------+-------+ 
     )";
     cout << " |  " << displayWheelVariants[currentIndex - 2] << "  |  ";
-    cout << displayWheelVariants[currentIndex - 1] << "  |  ";
-    cout << displayWheelVariants[currentIndex] << "  |  ";
-    cout << displayWheelVariants[currentIndex + 1] << "  |  ";
-    cout << displayWheelVariants[currentIndex + 2] << "  |";
+    cout << " |  " << displayWheelVariants[currentIndex - 1] << "  |  ";
+    cout << " |  " << displayWheelVariants[currentIndex] << "  |  ";
+    cout << " |  " << displayWheelVariants[currentIndex + 1] << "  |  ";
+    cout << " |  " << displayWheelVariants[currentIndex + 2] << "  |";
     cout << R"(
      +-------+-------+-------+-------+-------+
                         / \
@@ -689,7 +689,13 @@ short spinWheel() {
 
 void showPlusMenu() {
     screenClear();
-    cout << "Which letter do you want to know?" << endl << "> ";
+    cout << R"(
+                    +--------------------------------------+
+                    |  Which letter do you want to know?   |
+                    |  >                                   |
+                    +--------------------------------------+
+)" << endl;
+
 }
 
 short getIndexOfRandomUnopenedLetter(char openedLetters[]) {
@@ -719,7 +725,18 @@ void startGameWithBot(string word, string hint) {
 
         if (isPlayerTurn) {
             screenClear();
-            cout << "Player spins the wheel...";
+            cout << R"(
+                    +----------------------------+
+                    |  Player spins the wheel... |
+                    |                            |
+                    |         .----.             |
+                    |        /      \            |
+                    |       |  WHEEL |           |
+                    |        \      /            |
+                    |         '----'             |
+                    +----------------------------+
+)" << endl;
+
             onWheel = spinWheel();
             cout << endl << "Player has " << displayWheelVariants[onWheel] << " on wheel!";
             wait(3);
