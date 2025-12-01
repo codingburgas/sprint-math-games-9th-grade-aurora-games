@@ -878,9 +878,28 @@ void startGameWithBot(string word, string hint) {
         }
         else {
             screenClear();
-            cout << "Bot spins the wheel...";
+            cout << R"(
+                    +----------------------------+
+                    |  Bot spins the wheel...    |
+                    |                            |
+                    |         .----.             |
+                    |        /      \            |
+                    |       |  WHEEL |           |
+                    |        \      /            |
+                    |         '----'             |
+                    +----------------------------+
+            )" << endl;
+
             onWheel = spinWheel();
-            cout << endl << "Bot has " << displayWheelVariants[onWheel] << " on wheel!";
+            cout << R"(
+                    +--------------------------------------+
+                    |  Bot has )" << displayWheelVariants[onWheel] << R"( on wheel!            |
+                    |                                      |
+                    |        *     *     *                 |
+                    |    >  *   * *   *   *                |
+                    |        *     *     *                 |
+                    +--------------------------------------+
+            )" << endl;
             wait(3);
             screenClear();
             showGameMenu(openedLetters, hint, playerPoints, botPoints);
