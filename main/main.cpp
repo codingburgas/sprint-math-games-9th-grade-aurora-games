@@ -735,7 +735,7 @@ void startGameWithBot(string word, string hint) {
                     |        \      /            |
                     |         '----'             |
                     +----------------------------+
-)" << endl;
+            )" << endl;
 
             onWheel = spinWheel();
             cout << R"(
@@ -747,7 +747,7 @@ void startGameWithBot(string word, string hint) {
                     |        *     *     *                 |
                     |                                      |
                     +--------------------------------------+
-)" << endl;
+            )" << endl;
             wait(3);
             screenClear();
 
@@ -809,7 +809,7 @@ void startGameWithBot(string word, string hint) {
                     |                            |
                     |         (T_T)              |
                     +----------------------------+
-                    )" << endl;
+                                )" << endl;
                                 wait(2);
                                 isPlayerTurn = false;
                             }
@@ -819,14 +819,19 @@ void startGameWithBot(string word, string hint) {
                     +--------------------------------------+
                     |  Already guessed the letter!         |
                     +--------------------------------------+
-)" << endl;
+                            )" << endl;
 
                             wait(2);
                             isPlayerTurn = false;
                         }
                     }
                     else {
-                        cout << "Incorrect symbol!";
+                        cout << R"(
+                    +----------------------------+
+                    |  Incorrect symbol!         |
+                    +----------------------------+
+                           )" << endl;
+
                         wait(2);
                         isPlayerTurn = false;
                     }
@@ -840,7 +845,13 @@ void startGameWithBot(string word, string hint) {
                         return;
                     }
                     else {
-                        cout << "Wrong word!";
+                        cout << R"(
+                    +----------------------------+
+                    |  Wrong word!               |
+                    |                            |
+                    |         (T_T)              |
+                    +----------------------------+
+                        )" << endl;
                         wait(2);
                         gameRunning = false;
                         win(2);
@@ -852,7 +863,11 @@ void startGameWithBot(string word, string hint) {
                     }
                 }
                 else {
-                    cout << "Incorrect input!";
+                    cout << R"(
+                    +----------------------------+
+                    |  Incorrect input!          |
+                    +----------------------------+
+                    )" << endl;
                     wait(2);
                 }
             }
