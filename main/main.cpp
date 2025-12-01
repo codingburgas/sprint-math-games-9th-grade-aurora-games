@@ -481,9 +481,30 @@ void showGameMenu(char openedLetters[], string hint, short player1Points, short 
         if (openedLetters[i] == ' ') cout << "_ ";
         else cout << openedLetters[i] << " ";
     }
-    cout << "   Player 1 Points: " << player1Points << "   Player 2 Points: " << player2Points;
-    cout << endl << "HINT: " << hint << endl;
-    cout << "1. Guess letter" << endl << "2. Guess word" << endl << "3. Exit" << endl << "> ";
+    cout << R"(
+                    +----------------------------------------------+
+                    |   Player 1 Points: )" << player1Points << R"(       |
+                    |   Player 2 Points: )" << player2Points << R"(      |
+                    +----------------------------------------------+
+)" << endl;
+
+
+    cout << R"(
+                    +--------------------------------------+
+                    |  HINT: )" << hint << R"(             |
+                    +--------------------------------------+
+)" << endl;
+
+    cout << R"(
+                    +--------------------------------------+
+                    |  1) Guess letter                     |
+                    |  2) Guess word                       |
+                    |  3) Exit                             |
+                    +--------------------------------------+
+                    |  >                                   |
+                    +--------------------------------------+
+)" << endl;
+
 }
 
 void win(short who) {
