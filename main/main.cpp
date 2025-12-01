@@ -511,11 +511,21 @@ void win(short who) {
     screenClear();
     if (who == 1) {
         // Player 1 wins
-        cout << "Player 1 wins!";
+        cout << R"(
+                    +----------------------------+
+                    |  Player 1 wins!            |
+                    +----------------------------+
+)" << endl;
+
     }
     else {
         // Player 2 wins
-        cout << "Player 2 wins!";
+        cout << R"(
+                    +----------------------------+
+                    |  Player 2 wins!            |
+                    +----------------------------+
+)" << endl;
+
     }
     wait(5);
     showMainMenu();
@@ -616,7 +626,12 @@ bool exitFromGame() {
     char answer;
 
     screenClear();
-    cout << "Are you sure you want to exit the game? (y/n) > ";
+    cout << R"(
+                    +--------------------------------------------+
+                    |  Are you sure you want to exit the game?  |
+                    |  (y/n) >                                  |
+                    +--------------------------------------------+
+)" << endl;
     cin >> answer;
     answer = tolower(answer);
     if (answer == 'y') {
