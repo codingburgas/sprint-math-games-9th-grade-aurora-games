@@ -1135,7 +1135,12 @@ void startGame1v1(string word, string hint) {
                     }
                 }
                 else {
-                    cout << "Incorrect input!";
+                    cout << R"(
+                    +----------------------------+
+                    |  Incorrect input!          |
+                    +----------------------------+
+                    )" << endl;
+
                     wait(2);
                 }
                 if (isWordGuessed(openedLetters, word)) {
@@ -1147,9 +1152,24 @@ void startGame1v1(string word, string hint) {
         // Player 2 move
         else {
             screenClear();
-            cout << "Player 2 spins wheel...";
+            cout << R"(
+                    +----------------------------+
+                    |  Player 2 spins the wheel... |
+                    +----------------------------+
+            )" << endl;
+
             onWheel = spinWheel();
-            cout << endl << "Player 2 has " << displayWheelVariants[onWheel] << " on wheel!";
+            cout << R"(
+                    +--------------------------------------+
+                    |  Player 2 has )" << displayWheelVariants[onWheel] << R"( on wheel!        |
+                    |                                      |
+                    |        *     *     *                 |
+                    |   >  *   * *   *   *                 |
+                    |        *     *     *                 |
+                    |                                      |
+                    +--------------------------------------+
+            )" << endl;
+
             wait(3);
             screenClear();
 
@@ -1193,7 +1213,14 @@ void startGame1v1(string word, string hint) {
                         if (!isLetterGuessed(letter, guessedLetters)) {
                             guessedLetters[guessedLettersLength++] = tolower(letter);
                             if (indexOfLetterInWord(letter, word) >= 0) {
-                                cout << "Correct!";
+                                cout << R"(
+                    +----------------------------+
+                    |  Correct!                  |
+                    |                            |
+                    |         (^_^)              |
+                    +----------------------------+
+                                )" << endl;
+
                                 wait(2);
                                 if (onWheel == 3) {
                                     player2Points *= 2;
@@ -1211,19 +1238,36 @@ void startGame1v1(string word, string hint) {
                                 isPlayer1Turn = false;
                             }
                             else {
-                                cout << "No letter in the word!";
+                                cout << R"(
+                    +----------------------------+
+                    |  No letters in the word!   |
+                    |                            |
+                    |         (T_T)              |
+                    +----------------------------+
+                                )" << endl;
+
                                 wait(2);
                                 isPlayer1Turn = true;
                             }
                         }
                         else {
-                            cout << "Already guessed the letter!";
+                            cout << R"(
+                    +--------------------------------------+
+                    |  Already guessed the letter!         |
+                    +--------------------------------------+
+                            )" << endl;
+
                             wait(2);
                             isPlayer1Turn = true;
                         }
                     }
                     else {
-                        cout << "Incorrect symbol!";
+                        cout << R"(
+                    +----------------------------+
+                    |  Incorrect symbol!         |
+                    +----------------------------+
+                        )" << endl;
+
                         wait(2);
                         isPlayer1Turn = true;
                     }
