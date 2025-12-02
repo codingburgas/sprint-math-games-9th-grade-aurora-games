@@ -728,12 +728,6 @@ void startGameWithBot(string word, string hint) {
             cout << R"(
                     +----------------------------+
                     |  Player spins the wheel... |
-                    |                            |
-                    |         .----.             |
-                    |        /      \            |
-                    |       |  WHEEL |           |
-                    |        \      /            |
-                    |         '----'             |
                     +----------------------------+
             )" << endl;
 
@@ -881,12 +875,6 @@ void startGameWithBot(string word, string hint) {
             cout << R"(
                     +----------------------------+
                     |  Bot spins the wheel...    |
-                    |                            |
-                    |         .----.             |
-                    |        /      \            |
-                    |       |  WHEEL |           |
-                    |        \      /            |
-                    |         '----'             |
                     +----------------------------+
             )" << endl;
 
