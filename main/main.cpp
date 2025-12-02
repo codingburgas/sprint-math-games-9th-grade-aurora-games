@@ -1056,7 +1056,14 @@ void startGame1v1(string word, string hint) {
                         if (!isLetterGuessed(letter, guessedLetters)) {
                             guessedLetters[guessedLettersLength++] = tolower(letter);
                             if (indexOfLetterInWord(letter, word) >= 0) {
-                                cout << "Correct!";
+                                cout << R"(
+                    +----------------------------+
+                    |  Correct!                  |
+                    |                            |
+                    |         (^_^)              |
+                    +----------------------------+
+                                )" << endl;
+
                                 wait(2);
                                 if (onWheel == 3) {
                                     player1Points *= 2;
@@ -1074,19 +1081,36 @@ void startGame1v1(string word, string hint) {
                                 isPlayer1Turn = true;
                             }
                             else {
-                                cout << "No letter in the word!";
+                                cout << R"(
+                    +----------------------------+
+                    |  No letters in the word!   |
+                    |                            |
+                    |         (T_T)              |
+                    +----------------------------+
+                                )" << endl;
+
                                 wait(2);
                                 isPlayer1Turn = false;
                             }
                         }
                         else {
-                            cout << "Already guessed the letter!";
+                            cout << R"(
+                    +--------------------------------------+
+                    |  Already guessed the letter!         |
+                    +--------------------------------------+
+                            )" << endl;
+
                             wait(2);
                             isPlayer1Turn = false;
                         }
                     }
                     else {
-                        cout << "Incorrect symbol!";
+                        cout << R"(
+                    +----------------------------+
+                    |  Incorrect symbol!         |
+                    +----------------------------+
+                        )" << endl;
+
                         wait(2);
                         isPlayer1Turn = false;
                     }
