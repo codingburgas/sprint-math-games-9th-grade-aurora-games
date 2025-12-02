@@ -936,7 +936,12 @@ void startGameWithBot(string word, string hint) {
                         wait(1);
                         guessedLetters[guessedLettersLength++] = botLetter;
                         if (indexOfLetterInWord(botLetter, word) >= 0) {
-                            cout << "Bot guessed correctly!";
+                            cout << R"(
+                    +----------------------------+
+                    |  Bot guessed correctly!    |
+                    +----------------------------+
+                            )" << endl;
+
                             wait(2);
                             if (onWheel == 3) {
                                 botPoints *= 2;
@@ -954,7 +959,11 @@ void startGameWithBot(string word, string hint) {
                             isPlayerTurn = false;
                         }
                         else {
-                            cout << "Bot missed!";
+                            cout << R"(
+                    +----------------------------+
+                    |  Bot missed!               |
+                    +----------------------------+
+                            )" << endl;
                             wait(2);
                             isPlayerTurn = true;
                         }
