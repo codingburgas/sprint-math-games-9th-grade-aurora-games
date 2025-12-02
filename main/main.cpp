@@ -995,9 +995,23 @@ void startGame1v1(string word, string hint) {
 
         if (isPlayer1Turn) {
             screenClear();
-            cout << "Player 1 spins wheel...";
+            cout << R"(
+                    +----------------------------+
+                    | Player 1 spins the wheel...|
+                    +----------------------------+
+            )" << endl;
             onWheel = spinWheel();
-            cout << endl << "Player 1 has" << displayWheelVariants[onWheel] << " on wheel!";
+            cout << R"(
+                    +--------------------------------------+
+                    |  Player 1 has )" << displayWheelVariants[onWheel] << R"( on wheel!        |
+                    |                                      |
+                    |        *     *     *                 |
+                    |   >  *   * *   *   *                 |
+                    |        *     *     *                 |
+                    |                                      |
+                    +--------------------------------------+
+            )" << endl;
+    
             wait(3);
             screenClear();
 
