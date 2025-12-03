@@ -1,6 +1,7 @@
 #include <iostream>
+#include <fstream>
 #include <string>
-#include <cctype>
+#include <ctime>
 #include "game.h"
 #include "globals.h"
 #include "utils.h"
@@ -8,10 +9,6 @@
 #include "main.h"
 
 using namespace std;
-
-void displayWordState(char openedLetters[], string word) {
-    
-}
 
 bool isWordGuessed(char openedLetters[], string word) {
     for (short i = 0; i < 7; i++) {
@@ -152,6 +149,7 @@ char getRandomUnguessedLetter(string language, char guessedLetters[]) {
     }
 
     string candidates = "";
+    short candidatesLength = 0;
     for (short i = 0; i < alphabet.length(); i++) {
         bool isGuessed = false;
         for (short j = 0; j < 32; j++) {
@@ -162,11 +160,12 @@ char getRandomUnguessedLetter(string language, char guessedLetters[]) {
         }
         if (!isGuessed) {
             candidates += alphabet[i];
+            candidatesLength++;
         }
     }
 
-    if (candidates.length() > 0) {
-        short randomNumber = getRandomNumber(0, candidates.length() - 1);
+    if (candidatesLength > 0) {
+        short randomNumber = getRandomNumber(0, candidatesLength - 1);
         return candidates[randomNumber];
     }
     return ' ';

@@ -10,5 +10,4 @@ void chooseDifficulty();
 void about();
 void rulesMenu();
 void exitInMainMenu();
-
 #endif

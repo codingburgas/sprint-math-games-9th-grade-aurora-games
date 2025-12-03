@@ -1,5 +1,8 @@
-#include "words.h"
+#include <iostream>
+#include <fstream>
+#include <string>
 #include <ctime>
+#include "words.h"
 
 using namespace std;
 

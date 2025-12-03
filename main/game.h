@@ -20,5 +20,5 @@ bool exitFromGame();
 void wheelAnimation(short currentIndex);
 short spinWheel();
 void showPlusMenu();
-short getIndexOfRandomUnopenedLetter(char openedLetters[])
+short getIndexOfRandomUnopenedLetter(char openedLetters[]);
 #endif

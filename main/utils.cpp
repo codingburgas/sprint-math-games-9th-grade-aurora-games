@@ -1,5 +1,6 @@
 #include <iostream>
 #include <fstream>
+#include <string>
 #include <ctime>
 #include "utils.h"
 #include "globals.h"
@@ -9,6 +10,10 @@ using namespace std;
 void wait(double seconds) {
     int start = clock();
     while (clock() - start < (seconds * 1000)) {}
+}
+
+short getRandomNumber(short from, short to) {
+    return from + rand() % (to - from + 1);
 }
 
 void screenClear() {

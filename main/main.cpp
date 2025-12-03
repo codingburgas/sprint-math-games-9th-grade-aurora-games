@@ -206,7 +206,7 @@ int main() {
     setlocale(LC_ALL, "ru");
     srand(time(NULL));
 
-    putData(); // Из utils.cpp
+    putData();
     showMainMenu();
     return 0;
 }
