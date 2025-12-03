@@ -1,6 +1,6 @@
 ﻿  main.cpp
-C:\Users\enotx\OneDrive\Документы\SchoolProjects\sprint-math-games-9th-grade-aurora-games\main\main.cpp(567,69): warning C4267: аргумент: преобразование из "size_t" в "short"; возможна потеря данных
-C:\Users\enotx\OneDrive\Документы\SchoolProjects\sprint-math-games-9th-grade-aurora-games\main\main.cpp(595,17): warning C4305: инициализация: усечение из "double" в "float"
-C:\Users\enotx\OneDrive\Документы\SchoolProjects\sprint-math-games-9th-grade-aurora-games\main\main.cpp(603,22): warning C4305: +=: усечение из "double" в "float"
-C:\Users\enotx\OneDrive\Документы\SchoolProjects\sprint-math-games-9th-grade-aurora-games\main\main.cpp(1031,15): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
+C:\Users\enotx\OneDrive\Документы\SchoolProjects\sprint-math-games-9th-grade-aurora-games\main\main.cpp(569,69): warning C4267: аргумент: преобразование из "size_t" в "short"; возможна потеря данных
+C:\Users\enotx\OneDrive\Документы\SchoolProjects\sprint-math-games-9th-grade-aurora-games\main\main.cpp(618,17): warning C4305: инициализация: усечение из "double" в "float"
+C:\Users\enotx\OneDrive\Документы\SchoolProjects\sprint-math-games-9th-grade-aurora-games\main\main.cpp(626,22): warning C4305: +=: усечение из "double" в "float"
+C:\Users\enotx\OneDrive\Документы\SchoolProjects\sprint-math-games-9th-grade-aurora-games\main\main.cpp(1095,15): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
   main.vcxproj -> C:\Users\enotx\OneDrive\Документы\SchoolProjects\sprint-math-games-9th-grade-aurora-games\main\x64\Debug\main.exe
