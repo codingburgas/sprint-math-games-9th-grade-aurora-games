@@ -14,22 +14,16 @@ void startGame1v1(string word, string hint);
 void settingsMenu();
 
 // Functions
-
-// Function for waiting for time (Time in seconds)
 void wait(double seconds) {
     int start = clock();
     while (clock() - start < (seconds * 1000)) {}
 }
-
-// Console cleaning function
 void screenClear() {
     system("cls");
 }
-
 void rulesMenu() {
 
 }
-
 void chooseLanguage() {
     screenClear();
     int input;
@@ -64,7 +58,6 @@ void chooseLanguage() {
     settingsMenu();
 
 }
-
 void chooseDifficulty() {
     screenClear();
     int input;
@@ -97,7 +90,6 @@ void chooseDifficulty() {
 
     settingsMenu();
 }
-
 void settingsMenu() {
     screenClear();
     int input;
@@ -125,7 +117,6 @@ void settingsMenu() {
         break;
     }
 }
-
 void putData() {
     string path = "data.txt";
     ifstream fin;
@@ -166,7 +157,6 @@ void putData() {
 
     fin.close();
 }
-
 void getData(short inputLanguage, short inputDifficulty) {
     string path = "data.txt";
     ofstream fout;
@@ -193,7 +183,6 @@ void getData(short inputLanguage, short inputDifficulty) {
         fout.close();
     }
 }
-
 void showBeforeGameMenu() {
     screenClear();
     cout << R"(
@@ -209,19 +198,14 @@ void showBeforeGameMenu() {
 )" << endl;
 
 }
-
 void exitInMainMenu() {
     screenClear();
     showMainMenu();
 }
-
 short getRandomNumber(short from, short to) {
     return from + rand() % (to - from + 1);
 }
-
 string getRandomWord(string difficulty, string language, short randomNumber) {
-    // Words
-
     string wordsEn1Difficulty[15] = { "teacher", "student", "morning", "brother", "kitchen",
     "chicken", "picture", "address", "problem", "bedroom",
     "husband", "evening", "country", "village", "airport" };
@@ -263,7 +247,6 @@ string getRandomWord(string difficulty, string language, short randomNumber) {
             return wordsRu1Difficulty[randomNumber];
         }
     }
-
     else if (difficulty == "2") {
         if (language == "en") {
             return wordsEn2Difficulty[randomNumber];
@@ -275,7 +258,6 @@ string getRandomWord(string difficulty, string language, short randomNumber) {
             return wordsRu2Difficulty[randomNumber];
         }
     }
-
     else if (difficulty == "3") {
         if (language == "en") {
             return wordsEn3Difficulty[randomNumber];
@@ -289,10 +271,7 @@ string getRandomWord(string difficulty, string language, short randomNumber) {
     }
     return wordsEn2Difficulty[randomNumber];
 }
-
 string getHintForRandomWord(string difficulty, string language, short randomNumber) {
-    // Hints
-
     string hintsEn1Difficulty[15] = { "People", "People", "Abstract", "People", "House", "Food",
     "Object", "Abstract", "Abstract", "House", "People", "Abstract", "Nature", "Place",
     "Place" };
@@ -361,7 +340,6 @@ string getHintForRandomWord(string difficulty, string language, short randomNumb
     }
     return hintsEn2Difficulty[randomNumber];
 }
-
 void startGame() {
     short input;
     bool running = true;
@@ -384,11 +362,9 @@ void startGame() {
         break;
     }
 }
-
 void about() {
 
 }
-
 void showMainMenu() {
     screenClear();
 
@@ -450,11 +426,9 @@ void showMainMenu() {
     }
     screenClear();
 }
-
 void displayWordState(char openedLetters[], string word) {
 
 }
-
 bool isWordGuessed(char openedLetters[], string word) {
     for (short i = 0; i < 7; i++) {
         if (openedLetters[i] == ' ') {
@@ -463,7 +437,6 @@ bool isWordGuessed(char openedLetters[], string word) {
     }
     return true;
 }
-
 bool isLetterGuessed(char letter, char guessedLetters[]) {
     letter = tolower(letter);
     for (short i = 0; i < 32; i++) {
@@ -473,7 +446,6 @@ bool isLetterGuessed(char letter, char guessedLetters[]) {
     }
     return false;
 }
-
 void showGameMenu(char openedLetters[], string hint, short player1Points, short player2Points) {
     // TODO: this menu
     cout << "WORD: ";
@@ -506,7 +478,6 @@ void showGameMenu(char openedLetters[], string hint, short player1Points, short 
 )" << endl;
 
 }
-
 void win(short who) {
     screenClear();
     if (who == 1) {
@@ -530,8 +501,6 @@ void win(short who) {
     wait(5);
     showMainMenu();
 }
-
-// Check if a letter is in the alphabet
 bool isLetterInAlphabet(char letter, string language) {
     string alphabet;
     if (language == "en") {
@@ -554,8 +523,6 @@ bool isLetterInAlphabet(char letter, string language) {
     }
     return false;
 }
-
-// Check if a letter is in the word
 short indexOfLetterInWord(char letter, string word) {
     for (short i = 0; i < 7; i++) {
         if (letter == word[i]) {
@@ -564,7 +531,6 @@ short indexOfLetterInWord(char letter, string word) {
     }
     return -1;
 }
-
 bool isWordGuessedByWordGuess(string guess, string word) {
     if (guess.length() != 7) return false;
 
@@ -575,7 +541,6 @@ bool isWordGuessedByWordGuess(string guess, string word) {
     }
     return true;
 }
-
 short howMuchLettersGuessed(char openedLetters[], string word) {
     short result = 0;
     for (short i = 0; i < 7; i++) {
@@ -585,7 +550,6 @@ short howMuchLettersGuessed(char openedLetters[], string word) {
     }
     return result;
 }
-
 char getRandomUnguessedLetter(string language, char guessedLetters[]) {
     string alphabet;
     if (language == "en") {
@@ -621,7 +585,6 @@ char getRandomUnguessedLetter(string language, char guessedLetters[]) {
     }
     return ' ';
 }
-
 bool exitFromGame() {
     char answer;
 
@@ -666,7 +629,6 @@ void wheelAnimation(short currentIndex) {
                        /   \
     )";
 }
-
 short spinWheel() {
     short currentIndex = getRandomNumber(0, 15);
     short steps = getRandomNumber(30, 50);
@@ -686,7 +648,6 @@ short spinWheel() {
 
     return currentIndex;
 }
-
 void showPlusMenu() {
     screenClear();
     cout << R"(
@@ -697,7 +658,6 @@ void showPlusMenu() {
 )" << endl;
 
 }
-
 short getIndexOfRandomUnopenedLetter(char openedLetters[]) {
     short options[7], lastIndexInOptions = 0, random;
     for (short i = 0; i < 7; i++) {
@@ -708,7 +668,6 @@ short getIndexOfRandomUnopenedLetter(char openedLetters[]) {
     random = getRandomNumber(0, lastIndexInOptions - 1);
     return options[random];
 }
-
 void startGameWithBot(string word, string hint) {
     char openedLetters[7] = { ' ', ' ', ' ', ' ', ' ', ' ', ' ' };
     char guessedLetters[33] = { 0 };
@@ -728,6 +687,12 @@ void startGameWithBot(string word, string hint) {
             cout << R"(
                     +----------------------------+
                     |  Player spins the wheel... |
+                    |                            |
+                    |         .----.             |
+                    |        /      \            |
+                    |       |  WHEEL |           |
+                    |        \      /            |
+                    |         '----'             |
                     +----------------------------+
             )" << endl;
 
@@ -875,6 +840,12 @@ void startGameWithBot(string word, string hint) {
             cout << R"(
                     +----------------------------+
                     |  Bot spins the wheel...    |
+                    |                            |
+                    |         .----.             |
+                    |        /      \            |
+                    |       |  WHEEL |           |
+                    |        \      /            |
+                    |         '----'             |
                     +----------------------------+
             )" << endl;
 
@@ -936,12 +907,7 @@ void startGameWithBot(string word, string hint) {
                         wait(1);
                         guessedLetters[guessedLettersLength++] = botLetter;
                         if (indexOfLetterInWord(botLetter, word) >= 0) {
-                            cout << R"(
-                    +----------------------------+
-                    |  Bot guessed correctly!    |
-                    +----------------------------+
-                            )" << endl;
-
+                            cout << "Bot guessed correctly!";
                             wait(2);
                             if (onWheel == 3) {
                                 botPoints *= 2;
@@ -959,11 +925,7 @@ void startGameWithBot(string word, string hint) {
                             isPlayerTurn = false;
                         }
                         else {
-                            cout << R"(
-                    +----------------------------+
-                    |  Bot missed!               |
-                    +----------------------------+
-                            )" << endl;
+                            cout << "Bot missed!";
                             wait(2);
                             isPlayerTurn = true;
                         }
@@ -978,7 +940,6 @@ void startGameWithBot(string word, string hint) {
         }
     }
 }
-
 void startGame1v1(string word, string hint) {
     char openedLetters[7] = { ' ', ' ', ' ', ' ', ' ', ' ', ' ' };
     char guessedLetters[33] = { 0 };
@@ -995,23 +956,9 @@ void startGame1v1(string word, string hint) {
 
         if (isPlayer1Turn) {
             screenClear();
-            cout << R"(
-                    +----------------------------+
-                    | Player 1 spins the wheel...|
-                    +----------------------------+
-            )" << endl;
+            cout << "Player 1 spins wheel...";
             onWheel = spinWheel();
-            cout << R"(
-                    +--------------------------------------+
-                    |  Player 1 has )" << displayWheelVariants[onWheel] << R"( on wheel!        |
-                    |                                      |
-                    |        *     *     *                 |
-                    |   >  *   * *   *   *                 |
-                    |        *     *     *                 |
-                    |                                      |
-                    +--------------------------------------+
-            )" << endl;
-    
+            cout << endl << "Player 1 has" << displayWheelVariants[onWheel] << " on wheel!";
             wait(3);
             screenClear();
 
@@ -1056,14 +1003,7 @@ void startGame1v1(string word, string hint) {
                         if (!isLetterGuessed(letter, guessedLetters)) {
                             guessedLetters[guessedLettersLength++] = tolower(letter);
                             if (indexOfLetterInWord(letter, word) >= 0) {
-                                cout << R"(
-                    +----------------------------+
-                    |  Correct!                  |
-                    |                            |
-                    |         (^_^)              |
-                    +----------------------------+
-                                )" << endl;
-
+                                cout << "Correct!";
                                 wait(2);
                                 if (onWheel == 3) {
                                     player1Points *= 2;
@@ -1081,36 +1021,19 @@ void startGame1v1(string word, string hint) {
                                 isPlayer1Turn = true;
                             }
                             else {
-                                cout << R"(
-                    +----------------------------+
-                    |  No letters in the word!   |
-                    |                            |
-                    |         (T_T)              |
-                    +----------------------------+
-                                )" << endl;
-
+                                cout << "No letter in the word!";
                                 wait(2);
                                 isPlayer1Turn = false;
                             }
                         }
                         else {
-                            cout << R"(
-                    +--------------------------------------+
-                    |  Already guessed the letter!         |
-                    +--------------------------------------+
-                            )" << endl;
-
+                            cout << "Already guessed the letter!";
                             wait(2);
                             isPlayer1Turn = false;
                         }
                     }
                     else {
-                        cout << R"(
-                    +----------------------------+
-                    |  Incorrect symbol!         |
-                    +----------------------------+
-                        )" << endl;
-
+                        cout << "Incorrect symbol!";
                         wait(2);
                         isPlayer1Turn = false;
                     }
@@ -1135,12 +1058,7 @@ void startGame1v1(string word, string hint) {
                     }
                 }
                 else {
-                    cout << R"(
-                    +----------------------------+
-                    |  Incorrect input!          |
-                    +----------------------------+
-                    )" << endl;
-
+                    cout << "Incorrect input!";
                     wait(2);
                 }
                 if (isWordGuessed(openedLetters, word)) {
@@ -1152,24 +1070,9 @@ void startGame1v1(string word, string hint) {
         // Player 2 move
         else {
             screenClear();
-            cout << R"(
-                    +----------------------------+
-                    |  Player 2 spins the wheel... |
-                    +----------------------------+
-            )" << endl;
-
+            cout << "Player 2 spins wheel...";
             onWheel = spinWheel();
-            cout << R"(
-                    +--------------------------------------+
-                    |  Player 2 has )" << displayWheelVariants[onWheel] << R"( on wheel!        |
-                    |                                      |
-                    |        *     *     *                 |
-                    |   >  *   * *   *   *                 |
-                    |        *     *     *                 |
-                    |                                      |
-                    +--------------------------------------+
-            )" << endl;
-
+            cout << endl << "Player 2 has " << displayWheelVariants[onWheel] << " on wheel!";
             wait(3);
             screenClear();
 
@@ -1213,14 +1116,7 @@ void startGame1v1(string word, string hint) {
                         if (!isLetterGuessed(letter, guessedLetters)) {
                             guessedLetters[guessedLettersLength++] = tolower(letter);
                             if (indexOfLetterInWord(letter, word) >= 0) {
-                                cout << R"(
-                    +----------------------------+
-                    |  Correct!                  |
-                    |                            |
-                    |         (^_^)              |
-                    +----------------------------+
-                                )" << endl;
-
+                                cout << "Correct!";
                                 wait(2);
                                 if (onWheel == 3) {
                                     player2Points *= 2;
@@ -1238,36 +1134,19 @@ void startGame1v1(string word, string hint) {
                                 isPlayer1Turn = false;
                             }
                             else {
-                                cout << R"(
-                    +----------------------------+
-                    |  No letters in the word!   |
-                    |                            |
-                    |         (T_T)              |
-                    +----------------------------+
-                                )" << endl;
-
+                                cout << "No letter in the word!";
                                 wait(2);
                                 isPlayer1Turn = true;
                             }
                         }
                         else {
-                            cout << R"(
-                    +--------------------------------------+
-                    |  Already guessed the letter!         |
-                    +--------------------------------------+
-                            )" << endl;
-
+                            cout << "Already guessed the letter!";
                             wait(2);
                             isPlayer1Turn = true;
                         }
                     }
                     else {
-                        cout << R"(
-                    +----------------------------+
-                    |  Incorrect symbol!         |
-                    +----------------------------+
-                        )" << endl;
-
+                        cout << "Incorrect symbol!";
                         wait(2);
                         isPlayer1Turn = true;
                     }
@@ -1299,7 +1178,6 @@ void startGame1v1(string word, string hint) {
         }
     }
 }
-
 int main() {
     system("chcp 1251 >nul");
     setlocale(LC_ALL, "ru");
