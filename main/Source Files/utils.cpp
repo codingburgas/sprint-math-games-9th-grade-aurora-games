@@ -21,7 +21,7 @@ void screenClear() {
 }
 
 void putData() {
-    string path = "data.txt";
+    string path = "../../data.txt";
     ifstream fin;
     fin.open(path);
     if (!fin.is_open())
@@ -54,7 +54,7 @@ void putData() {
 }
 
 void getData(short inputLanguage, short inputDifficulty) {
-    string path = "data.txt";
+    string path = "../../data.txt";
     ofstream fout;
     fout.open(path, ios::out);
 
