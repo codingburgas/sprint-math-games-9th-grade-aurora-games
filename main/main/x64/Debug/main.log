@@ -1,9 +1,0 @@
-﻿  game.cpp
-C:\Users\enotx\OneDrive\Документы\SchoolProjects\sprint-math-games-9th-grade-aurora-games\main\game.cpp(223,17): warning C4305: инициализация: усечение из "double" в "float"
-C:\Users\enotx\OneDrive\Документы\SchoolProjects\sprint-math-games-9th-grade-aurora-games\main\game.cpp(230,22): warning C4305: +=: усечение из "double" в "float"
-  main.cpp
-C:\Users\enotx\OneDrive\Документы\SchoolProjects\sprint-math-games-9th-grade-aurora-games\main\main.cpp(207,15): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
-  utils.cpp
-  words.cpp
-  Создание кода...
-  main.vcxproj -> C:\Users\enotx\OneDrive\Документы\SchoolProjects\sprint-math-games-9th-grade-aurora-games\main\x64\Debug\main.exe
