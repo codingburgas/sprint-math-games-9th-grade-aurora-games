@@ -12,11 +12,32 @@ string difficulty;
 string language;
 
 void rulesMenu() {
-    // TODO: This menu
-}
-
-void about() {
-    // TODO: This menu
+    screenClear();
+    cout << R"(
+           +------------------------------------------------------+
+           |               R U L E S   O F   T H E   G A M E      |
+           +------------------------------------------------------+
+           |                                                      |
+           |  Players guess a 7-letter word by spinning a wheel.  |
+           |  A correct letter guess earns points and continues   |
+           |  the turn.                                           |
+           |                                                      |
+           |  WHEEL SECTIONS:                                     |
+           |                                                      |
+           |  - Points (350-950): Guess a letter for points.      |
+           |  - 'B' (Bankrupt): Lose all points. Turn ends.       |
+           |  - 'S' (Skip): Turn is passed.                       |
+           |  - '+' (Plus): Reveal one letter for free. Turn ends.|
+           |                                                      |
+           |  GUESSING:                                           |
+           |                                                      |
+           |  Players can guess a letter or the full word.        |
+           |  A correct word guess is an IMMEDIATE WIN.           |
+           |  An incorrect word guess is an IMMEDIATE LOSS.       |
+           |                                                      |
+           |  1) Exit                                             |
+           +------------------------------------------------------+
+)" << endl;
 }
 
 void chooseLanguage() {
@@ -166,7 +187,7 @@ void showMainMenu() {
                         +----------------------------+
                         |  1) Start Game             |
                         |  2) Settings               |
-                        |  3) About                  |
+                        |  3) Rules                  |
                         |  4) Exit                   |
                         +----------------------------+
     )";
@@ -185,9 +206,11 @@ void showMainMenu() {
         case 2: // Options
             settingsMenu();
             break;
-        case 3: // Rules/About
-            about();
+        case 3: // Rules
             rulesMenu();
+            cout << "> ";
+            cin >> input;
+            showMainMenu();
             break;
             
         case 4: // Exit
