@@ -127,6 +127,7 @@ void settingsMenu() {
         chooseDifficulty();
         break;
     case 3:
+        getData(language, difficulty);
         showMainMenu();
         break;
     }

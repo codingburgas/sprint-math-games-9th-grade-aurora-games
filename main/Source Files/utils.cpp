@@ -57,7 +57,7 @@ void putData() {
     fin.close();
 }
 
-void getData(short inputLanguage, short inputDifficulty) {
+void getData(string inputLanguage, string inputDifficulty) {
     string path = "../../data.txt";
     ofstream fout;
     fout.open(path, ios::out);
@@ -67,16 +67,6 @@ void getData(short inputLanguage, short inputDifficulty) {
         cout << "Error: File can not be opened" << endl;
     }
     else {
-        if (!(cin >> language)) {
-            fout.close();
-            return;
-        }
-
-        if (!(cin >> difficulty)) {
-            fout.close();
-            return;
-        }
-
         fout << language << endl;
         fout << difficulty << endl;
 
