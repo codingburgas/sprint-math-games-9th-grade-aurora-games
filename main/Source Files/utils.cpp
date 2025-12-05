@@ -26,7 +26,11 @@ void putData() {
     fin.open(path);
     if (!fin.is_open())
     {
-        cout << "Error: File can not be opened" << endl;
+        cout << R"(
+                    +--------------------------------------+
+                    |     Error: File can not be opened    |
+                    +--------------------------------------+
+)" << endl;
     }
     else
     {

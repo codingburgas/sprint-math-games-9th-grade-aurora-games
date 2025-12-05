@@ -15,7 +15,7 @@ void rulesMenu() {
     screenClear();
     cout << R"(
            +------------------------------------------------------+
-           |               R U L E S   O F   T H E   G A M E      |
+           |         R U L E S   O F   T H E   G A M E            |
            +------------------------------------------------------+
            |                                                      |
            |  Players guess a 7-letter word by spinning a wheel.  |
@@ -37,24 +37,22 @@ void rulesMenu() {
            |                                                      |
            |  1) Exit                                             |
            +------------------------------------------------------+
-)" << endl;
+           > )";
 }
 
 void chooseLanguage() {
     screenClear();
     int input;
     cout << R"(
-                        +----------------------------+
-                        |       LANGUAGE SELECT      |
-                        +----------------------------+
-            
-                        |  1) English                |
-                        |  2) Bulgarian              |
-                        |  3) Russian                |
-                        |  4) Back                   |
-                        +----------------------------+
-    )";
-    cout << "> ";
+                        +---------------------------------------+
+                        |            LANGUAGE SELECT            |
+                        +---------------------------------------+
+                        |  1) English                           |
+                        |  2) Bulgarian                         |
+                        |  3) Russian                           |
+                        |  4) Back                              |
+                        +---------------------------------------+
+                        > )";
     cin >> input;
 
     switch (input) {
@@ -79,16 +77,15 @@ void chooseDifficulty() {
     screenClear();
     int input;
     cout << R"(
-                        +----------------------------------------------------------+
-                        |                    DIFFICULTY LEVEL                      |
-                        +----------------------------------------------------------+
-                        |  1) Easy (Common vocabulary)                             |
-                        |  2) Normal (Intermediate difficulty)                     |
-                        |  3) Hard (Complex vocabulary)                            |
-                        |  4) Back                                                 |
-                        +----------------------------------------------------------+
-)";
-    cout << ">";
+                        +---------------------------------------+
+                        |           DIFFICULTY LEVEL            |
+                        +---------------------------------------+
+                        |  1) Easy (Common vocabulary)          |
+                        |  2) Normal (Intermediate difficulty)  |
+                        |  3) Hard (Complex vocabulary)         |
+                        |  4) Back                              |
+                        +---------------------------------------+
+                        > )";
     cin >> input;
 
     switch (input) {
@@ -112,15 +109,14 @@ void settingsMenu() {
     screenClear();
     int input;
     cout << R"(
-                        +----------------------------+
-                        |          SETTINGS          |
-                        +----------------------------+
-                        |  1) Change Language        |
-                        |  2) Change Difficulty      |
-                        |  3) Back                   |
-                        +----------------------------+
-)";
-    cout << "> ";
+                        +---------------------------------------+
+                        |                SETTINGS               |
+                        +---------------------------------------+
+                        |  1) Change Language                   |
+                        |  2) Change Difficulty                 |
+                        |  3) Back                              |
+                        +---------------------------------------+
+                        > )";
     cin >> input;
 
     switch (input) {
@@ -139,16 +135,14 @@ void settingsMenu() {
 void showBeforeGameMenu() {
     screenClear();
     cout << R"(
-                    +----------------------------+
-                    |         MAIN MENU          |
-                    +----------------------------+
-                    |  1) Play with a bot        |
-                    |  2) Play PvP               |
-                    |  3) Exit                   |
-                    +----------------------------+
-                    |  >                         |
-                    +----------------------------+
-)" << endl;
+                        +---------------------------------------+
+                        |                MAIN MENU              |
+                        +---------------------------------------+
+                        |  1) Play with a bot                   |
+                        |  2) Play PvP                          |
+                        |  3) Exit                              |
+                        +---------------------------------------+
+                        > )";
 }
 
 void exitInMainMenu() {
@@ -173,7 +167,7 @@ void startGame() {
     case 2:
         startGame1v1(word, hint);
         break;
-    case 3:
+    case 3: 
         exitInMainMenu();
         break;
     }
@@ -182,17 +176,15 @@ void startGame() {
 void showMainMenu() {
     screenClear();
     cout << R"(
-                        +----------------------------+
-                        |       WHEEL OF WORDS       |
-                        +----------------------------+
-                        |  1) Start Game             |
-                        |  2) Settings               |
-                        |  3) Rules                  |
-                        |  4) Exit                   |
-                        +----------------------------+
-    )";
-    cout << "> ";
-
+                        +---------------------------------------+
+                        |            WHEEL OF FORTUNE           |
+                        +---------------------------------------+
+                        |  1) Start Game                        |
+                        |  2) Settings                          |
+                        |  3) Rules                             |
+                        |  4) Exit                              |
+                        +---------------------------------------+
+                        > )";
     short input;
     bool running = true;
     while (running) {
@@ -208,7 +200,6 @@ void showMainMenu() {
             break;
         case 3: // Rules
             rulesMenu();
-            cout << "> ";
             cin >> input;
             showMainMenu();
             break;
