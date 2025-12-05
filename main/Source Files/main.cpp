@@ -54,23 +54,26 @@ void chooseLanguage() {
                         +---------------------------------------+
                         > )";
     cin >> input;
-
     switch (input) {
     case 1:
         language = "en";
+        getData(language, difficulty);
         break;
     case 2:
         language = "bg";
+        getData(language, difficulty);
         break;
     case 3:
         language = "ru";
+        getData(language, difficulty);
         break;
     case 4:
         settingsMenu();
         break;
+    default:
+        chooseLanguage();
+        break;
     }
-
-    settingsMenu();
 }
 
 void chooseDifficulty() {
@@ -91,17 +94,22 @@ void chooseDifficulty() {
     switch (input) {
     case 1:
         difficulty = "1";
+        getData(language, difficulty);
         break;
     case 2:
         difficulty = "2";
+        getData(language, difficulty);
         break;
     case 3:
         difficulty = "3";
+        getData(language, difficulty);
         break;
     case 4:
         settingsMenu();
+    default:
+        chooseDifficulty();
+        break;
     }
-
     settingsMenu();
 }
 
@@ -127,8 +135,10 @@ void settingsMenu() {
         chooseDifficulty();
         break;
     case 3:
-        getData(language, difficulty);
         showMainMenu();
+        break;
+    default:
+        settingsMenu();
         break;
     }
 }
@@ -153,8 +163,6 @@ void exitInMainMenu() {
 
 void startGame() {
     short input;
-    bool running = true;
-
     short randomNumber = getRandomNumber(0, 14);
     string word = getRandomWord(difficulty, language, randomNumber),
         hint = getHintForRandomWord(difficulty, language, randomNumber);
@@ -168,8 +176,11 @@ void startGame() {
     case 2:
         startGame1v1(word, hint);
         break;
-    case 3: 
+    case 3:
         exitInMainMenu();
+        break;
+    default:
+        startGame();
         break;
     }
 }
@@ -187,32 +198,25 @@ void showMainMenu() {
                         +---------------------------------------+
                         > )";
     short input;
-    bool running = true;
-    while (running) {
+    cin >> input;
+    switch (input) {
+    case 1: // Play
+        startGame();
+        showMainMenu();
+        break;
+    case 2: // Options
+        settingsMenu();
+        break;
+    case 3: // Rules
+        rulesMenu();
         cin >> input;
-        switch (input) {
-        case 1: // Play
-            startGame();
-            showMainMenu();
-            break;
-            
-        case 2: // Options
-            settingsMenu();
-            break;
-        case 3: // Rules
-            rulesMenu();
-            cin >> input;
-            showMainMenu();
-            break;
-            
-        case 4: // Exit
-            running = false;
-            return;
-        default: // Incorrect input;
-            
-            cout << "Incorrect input, try again > ";
-            break;
-        }
+        showMainMenu();
+        break;
+    case 4: // Exit
+        return;
+    default: // Incorrect input;
+        showMainMenu();
+        break;
     }
     screenClear();
 }
