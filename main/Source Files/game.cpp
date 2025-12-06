@@ -114,10 +114,10 @@ bool isLetterInAlphabet(char letter, string language) {
         alphabet = "abcdefghijklmnopqrstuvwxyz";
     }
     else if (language == "bg") {
-        alphabet = "                              ";
+        alphabet = "אבגדהוזחטיךכלםמןנסעףפץצקרשתü‏ÿ";
     }
     else if (language == "ru") {
-        alphabet = "                                ";
+        alphabet = "אבגדהו¸זחטיךכלםמןנסעףפץצקרשתûü‎‏ÿ";
     }
     else {
         return false;
@@ -269,10 +269,9 @@ void showPlusMenu() {
     screenClear();
     cout << R"(
                     +---------------------------------------+
-                    |   Which letter do you want to know?   |
+                    |Which letter do you want to know? (1-7)|
                     +---------------------------------------+
-
-                       > )" << endl;
+                    > )";
 }
 
 short getIndexOfRandomUnopenedLetter(char openedLetters[]) {
@@ -328,6 +327,7 @@ void startGameWithBot(string word, string hint) {
             // + on wheel
             else if (onWheel == 1) {
                 do {
+                    screenClear();
                     showPlusMenu();
                     cin >> input;
                 } while (input > 7 || input < 1);
@@ -341,6 +341,7 @@ void startGameWithBot(string word, string hint) {
             // Player have points on wheel
             else if (onWheel >= 3) {
                 do {
+                    screenClear();
                     showGameMenu(openedLetters, hint, playerPoints, botPoints);
                     cin >> input;
                 } while (input < 0 || input > 3);
@@ -553,7 +554,6 @@ void startGame1v1(string word, string hint) {
     bool isPlayer1Turn = true;
 
     while (gameRunning && !isWordGuessed(openedLetters, word)) {
-
         if (isPlayer1Turn) {
             screenClear();
             cout << R"(
@@ -564,7 +564,7 @@ void startGame1v1(string word, string hint) {
             wait(2);
             onWheel = spinWheel();
 
-            cout << "                    +---------------------------------------+" << endl <<
+            cout << "                +---------------------------------------+" << endl <<
                 "                    |     Player 1 has " << displayWheelVariants[onWheel] << " on wheel!        |" << endl <<
                 "                    +---------------------------------------+";
             wait(3);
@@ -580,6 +580,7 @@ void startGame1v1(string word, string hint) {
             // + on wheel
             else if (onWheel == 1) {
                 do {
+                    screenClear();
                     showPlusMenu();
                     cin >> input;
                 } while (input < 0 || input > 7);
@@ -594,10 +595,11 @@ void startGame1v1(string word, string hint) {
             else if (onWheel >= 3) {
                 // cout << word << endl;
                 do {
+                    screenClear();
                     showGameMenu(openedLetters, hint, player1Points, player2Points);
                     cin >> input;
                 } while (input < 0 || input > 3);
-
+                cout << "                    > ";
                 // Player 1 move
                 if (input == 1) { // Letter guess
                     char letter;
@@ -699,8 +701,8 @@ void startGame1v1(string word, string hint) {
                                )" << endl;
             wait(2);
             onWheel = spinWheel();
-            cout << "                    +---------------------------------------+" << endl <<
-                "                    |     Player 2 has " << displayWheelVariants[onWheel] << " on wheel!           |" << endl <<
+            cout << "                +---------------------------------------+" << endl <<
+                "                    |     Player 2 has " << displayWheelVariants[onWheel] << " on wheel!        |" << endl <<
                 "                    +---------------------------------------+";
             wait(3);
             screenClear();
@@ -713,6 +715,7 @@ void startGame1v1(string word, string hint) {
             // + on wheel
             else if (onWheel == 1) {
                 do {
+                    screenClear();
                     showPlusMenu();
                     cin >> input;
                 } while (input < 0 || input > 7);
@@ -725,12 +728,13 @@ void startGame1v1(string word, string hint) {
             }
             // Player have points on wheel
             else if (onWheel >= 3) {
-                cout << word << endl;
+               // cout << word << endl;
                 do {
+                    screenClear();
                     showGameMenu(openedLetters, hint, player1Points, player2Points);
                     cin >> input;
                 } while (input < 0 || input > 3);
-
+                cout << "                    > ";
                 if (input == 1) { // Letter guess
                     char letter;
                     cin >> letter;

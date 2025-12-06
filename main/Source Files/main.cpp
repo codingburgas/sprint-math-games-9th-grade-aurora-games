@@ -14,35 +14,36 @@ string language;
 void rulesMenu() {
     screenClear();
     cout << R"(
-           +------------------------------------------------------+
-           |         R U L E S   O F   T H E   G A M E            |
-           +------------------------------------------------------+
-           |                                                      |
-           |  Players guess a 7-letter word by spinning a wheel.  |
-           |  A correct letter guess earns points and continues   |
-           |  the turn.                                           |
-           |                                                      |
-           |  WHEEL SECTIONS:                                     |
-           |                                                      |
-           |  - Points (350-950): Guess a letter for points.      |
-           |  - 'B' (Bankrupt): Lose all points. Turn ends.       |
-           |  - 'S' (Skip): Turn is passed.                       |
-           |  - '+' (Plus): Reveal one letter for free. Turn ends.|
-           |                                                      |
-           |  GUESSING:                                           |
-           |                                                      |
-           |  Players can guess a letter or the full word.        |
-           |  A correct word guess is an IMMEDIATE WIN.           |
-           |  An incorrect word guess is an IMMEDIATE LOSS.       |
-           |                                                      |
-           |  1) Exit                                             |
-           +------------------------------------------------------+
-           > )";
+       +------------------------------------------------------+
+       |             R U L E S   O F   T H E   G A M E        |
+       +------------------------------------------------------+
+       |                                                      |
+       |  Players guess a 7-letter word by spinning a wheel.  |
+       |  A correct letter guess earns points and continues   |
+       |  the turn.                                           |
+       |                                                      |
+       |  WHEEL SECTIONS:                                     |
+       |                                                      |
+       |  - Points (350-950): Guess a letter for points.      |
+       |  - 'B' (Bankrupt): Lose all points. Turn ends.       |
+       |  - 'S' (Skip): Turn is passed.                       |
+       |  - '+' (Plus): Reveal one letter for free. Turn ends.|
+       |  - 'X' (Double): Doubles the current score.          |
+       |                                                      |
+       |  GUESSING:                                           |
+       |                                                      |
+       |  Players can guess a letter or the full word.        |
+       |  A correct word guess is an IMMEDIATE WIN.           |
+       |  An incorrect word guess is an IMMEDIATE LOSS.       |
+       |                                                      |
+       |  1) Exit                                             |
+       +------------------------------------------------------+
+       >)";
 }
 
 void chooseLanguage() {
     screenClear();
-    int input;
+    char input;
     cout << R"(
                         +---------------------------------------+
                         |            LANGUAGE SELECT            |
@@ -55,30 +56,30 @@ void chooseLanguage() {
                         > )";
     cin >> input;
     switch (input) {
-    case 1:
+    case '1':
         language = "en";
-        getData(language, difficulty);
+        putData(language, difficulty);
         break;
-    case 2:
+    case '2':
         language = "bg";
-        getData(language, difficulty);
+        putData(language, difficulty);
         break;
-    case 3:
+    case '3':
         language = "ru";
-        getData(language, difficulty);
+        putData(language, difficulty);
         break;
-    case 4:
-        settingsMenu();
+    case '4':
         break;
     default:
         chooseLanguage();
         break;
     }
+	settingsMenu();
 }
 
 void chooseDifficulty() {
     screenClear();
-    int input;
+    char input;
     cout << R"(
                         +---------------------------------------+
                         |           DIFFICULTY LEVEL            |
@@ -92,19 +93,19 @@ void chooseDifficulty() {
     cin >> input;
 
     switch (input) {
-    case 1:
+    case '1':
         difficulty = "1";
-        getData(language, difficulty);
+        putData(language, difficulty);
         break;
-    case 2:
+    case '2':
         difficulty = "2";
-        getData(language, difficulty);
+        putData(language, difficulty);
         break;
-    case 3:
+    case '3':
         difficulty = "3";
-        getData(language, difficulty);
+        putData(language, difficulty);
         break;
-    case 4:
+    case '4':
         settingsMenu();
     default:
         chooseDifficulty();
@@ -115,7 +116,7 @@ void chooseDifficulty() {
 
 void settingsMenu() {
     screenClear();
-    int input;
+    char input;
     cout << R"(
                         +---------------------------------------+
                         |                SETTINGS               |
@@ -128,13 +129,13 @@ void settingsMenu() {
     cin >> input;
 
     switch (input) {
-    case 1:
+    case '1':
         chooseLanguage();
         break;
-    case 2:
+    case '2':
         chooseDifficulty();
         break;
-    case 3:
+    case '3':
         showMainMenu();
         break;
     default:
@@ -162,7 +163,7 @@ void exitInMainMenu() {
 }
 
 void startGame() {
-    short input;
+    char input;
     short randomNumber = getRandomNumber(0, 14);
     string word = getRandomWord(difficulty, language, randomNumber),
         hint = getHintForRandomWord(difficulty, language, randomNumber);
@@ -170,13 +171,13 @@ void startGame() {
     showBeforeGameMenu();
     cin >> input;
     switch (input) {
-    case 1:
+    case '1':
         startGameWithBot(word, hint);
         break;
-    case 2:
+    case '2':
         startGame1v1(word, hint);
         break;
-    case 3:
+    case '3':
         exitInMainMenu();
         break;
     default:
@@ -197,22 +198,22 @@ void showMainMenu() {
                         |  4) Exit                              |
                         +---------------------------------------+
                         > )";
-    short input;
+    char input;
     cin >> input;
     switch (input) {
-    case 1: // Play
+    case '1': // Play
         startGame();
         showMainMenu();
         break;
-    case 2: // Options
+    case '2': // Options
         settingsMenu();
         break;
-    case 3: // Rules
+    case '3': // Rules
         rulesMenu();
         cin >> input;
         showMainMenu();
         break;
-    case 4: // Exit
+    case '4': // Exit
         return;
     default: // Incorrect input;
         showMainMenu();
@@ -225,7 +226,7 @@ int main() {
     setlocale(LC_ALL, "ru");
     srand(time(NULL));
 
-    putData();
+    getData();
     showMainMenu();
     return 0;
 }
