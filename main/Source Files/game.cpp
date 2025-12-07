@@ -100,7 +100,7 @@ void win(short who) {
         // Player 1 wins
         cout << R"(
                     +--------------------------------------+
-                    |            Player 1 wins!            |
+                    |       Player 1 wins!   (^_^)         |
                     +--------------------------------------+
 )" << endl;
     }
@@ -108,7 +108,7 @@ void win(short who) {
         // Player 2 wins
         cout << R"(
                     +--------------------------------------+
-                    |            Player 2 wins!            |
+                    |       Player 2 wins!   (^_^)         |
                     +--------------------------------------+
 )" << endl;
 
@@ -749,7 +749,7 @@ void startGame1v1(string word, string hint) {
                     screenClear();
                     whoseTurn(2);
                     showGameMenu(openedLetters, hint, player1Points, player2Points);
-
+                    cout << "                    > ";
                     cin >> input;
                 } while (input < 0 || input > 3);
                 cout << "                    > ";
