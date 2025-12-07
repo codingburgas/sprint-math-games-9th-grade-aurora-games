@@ -13,7 +13,7 @@ void win(short who);
 bool isLetterInAlphabet(char letter, string language); 
 short indexOfLetterInWord(char letter, string word); // Finds the index of a letter in the word; returns -1 if not found.
 bool isWordGuessedByWordGuess(string guess, string word); 
-short howMuchLettersGuessed(char openedLetters[], string word); // Counts how many letters have been guessed in the word.
+short howManyLettersGuessed(char openedLetters[], string word); // Counts how many letters have been guessed in the word.
 char getRandomUnguessedLetter(string language, char guessedLetters[]); // Gets a random unguessed letter from the alphabet based on the language.
 bool exitFromGame(); // Prompts the user to confirm exiting the game; returns true if confirmed.
 void wheelAnimation(short currentIndex); // Displays the spinning wheel animation at a given index.

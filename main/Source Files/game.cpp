@@ -351,7 +351,7 @@ void startGameWithBot(string word, string hint) {
                     screenClear();
                     whoseTurn(1);
                     showGameMenu(openedLetters, hint, playerPoints, botPoints);
-					cout << "                    > ";
+                    cout << "                    > ";
                     cin >> input;
                 } while (input < 0 || input > 3);
                 cout << "                    > ";
@@ -485,7 +485,7 @@ void startGameWithBot(string word, string hint) {
                 // Bot is thinking
                 wait(1.5);
                 bool botWinsNow = false;
-                short lettersOpenedCount = howMuchLettersGuessed(openedLetters, word);
+                short lettersOpenedCount = howManyLettersGuessed(openedLetters, word);
                 if (lettersOpenedCount == 5) {
                     if (getRandomNumber(1, 8) == 1) {
                         botWinsNow = true;
@@ -744,7 +744,7 @@ void startGame1v1(string word, string hint) {
             }
             // Player have points on wheel
             else if (onWheel >= 3) {
-               // cout << word << endl;
+                // cout << word << endl;
                 do {
                     screenClear();
                     whoseTurn(2);
