@@ -10,7 +10,7 @@
 using namespace std;
 string difficulty;
 string language;
-
+// Displays the rules of the game
 void rulesMenu() {
     screenClear();
     cout << R"(
@@ -40,7 +40,7 @@ void rulesMenu() {
        +------------------------------------------------------+
        >)";
 }
-
+// Allows the user to choose a language
 void chooseLanguage() {
     screenClear();
     char input;
@@ -76,7 +76,7 @@ void chooseLanguage() {
     }
 	settingsMenu();
 }
-
+// Allows the user to choose a difficulty level
 void chooseDifficulty() {
     screenClear();
     char input;
@@ -113,7 +113,7 @@ void chooseDifficulty() {
     }
     settingsMenu();
 }
-
+// Displays the settings menu
 void settingsMenu() {
     screenClear();
     char input;
@@ -143,7 +143,7 @@ void settingsMenu() {
         break;
     }
 }
-
+// Displays the menu before starting the game
 void showBeforeGameMenu() {
     screenClear();
     cout << R"(
@@ -185,7 +185,7 @@ void startGame() {
         break;
     }
 }
-
+// Displays the main menu of the game
 void showMainMenu() {
     screenClear();
     cout << R"(
@@ -221,6 +221,7 @@ void showMainMenu() {
     }
     screenClear();
 }
+// Main function
 int main() {
     system("chcp 1251 >nul");
     setlocale(LC_ALL, "ru");

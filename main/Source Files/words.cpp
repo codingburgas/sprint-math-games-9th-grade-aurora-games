@@ -5,7 +5,7 @@
 #include "../Header Files/words.h"
 
 using namespace std;
-
+// Word lists for different languages and difficulties
 string wordsEn1Difficulty[15] = { "teacher", "student", "morning", "brother", "kitchen",
 "chicken", "picture", "address", "problem", "bedroom",
 "husband", "evening", "country", "village", "airport" };
@@ -33,7 +33,7 @@ string wordsRu2Difficulty[15] = { "шоколад", "рассвет", "договор", "загадка", "к
 string wordsRu3Difficulty[15] = { "скепсис", "колодец", "водопад", "призрак", "сметана",
     "диагноз", "реакция", "встреча", "экватор", "ящерица",
     "коридор", "фонарик", "рубашка", "котлета", "блокнот" };
-
+// Hint lists for different languages and difficulties
 string hintsEn1Difficulty[15] = { "People", "People", "Abstract", "People", "House", "Food",
 "Object", "Abstract", "Abstract", "House", "People", "Abstract", "Nature", "Place",
 "Place" };
@@ -61,7 +61,7 @@ string hintsRu2Difficulty[15] = { "Абстракция", "Люди", "Еда", "Люди",
 string hintsRu3Difficulty[15] = { "Абстракция", "Дом", "Природа", "Мистика",
 "Еда", "Наука", "Абстракция", "Абстракция", "Природа", "Природа", "Дом", "Предмет",
 "Предмет", "Еда", "Предмет" };
-
+// Retrieves a random word based on difficulty, language, and a random index
 string getRandomWord(string difficulty, string language, short randomNumber) {
     if (difficulty == "1") {
         if (language == "en") {
@@ -98,7 +98,7 @@ string getRandomWord(string difficulty, string language, short randomNumber) {
     }
     return wordsEn2Difficulty[randomNumber];
 }
-
+// Retrieves a hint for a random word based on difficulty, language, and a random index
 string getHintForRandomWord(string difficulty, string language, short randomNumber) {
     if (difficulty == "1") {
         if (language == "en") {
