@@ -10,6 +10,12 @@
 
 using namespace std;
 
+void whoseTurn(short player) {
+
+    cout << R"(
+                    +--------------------------------------+
+                    |           Player )" << player << R"( turn              |)" << endl;
+}
 void printLineWithPoints(string label, int points) {
     cout << "                    |  " << label << ": " << points;
     int tempPoints = points, length = 0, spacesNeeded;
@@ -75,6 +81,7 @@ void showGameMenu(char openedLetters[], string hint, short player1Points, short 
     playerPointsOutput(player1Points, player2Points);
     cout << endl;
     hintOutput(hint);
+
     cout << R"(
                     +--------------------------------------+
                     |  1) Guess letter                     |
@@ -207,9 +214,7 @@ bool exitFromGame() {
                     |Are you sure you want to exit the game?|
                     |(y/n)                                  |
                     +---------------------------------------+
-
-                    >
-)";
+                    > )";
     cin >> answer;
     answer = tolower(answer);
     if (answer == 'y') {
@@ -342,6 +347,7 @@ void startGameWithBot(string word, string hint) {
             else if (onWheel >= 3) {
                 do {
                     screenClear();
+                    whoseTurn(1);
                     showGameMenu(openedLetters, hint, playerPoints, botPoints);
                     cin >> input;
                 } while (input < 0 || input > 3);
@@ -454,6 +460,7 @@ void startGameWithBot(string word, string hint) {
                 "                    +---------------------------------------+";
             wait(3);
             screenClear();
+            whoseTurn(2);
             showGameMenu(openedLetters, hint, playerPoints, botPoints);
 
             // B on wheel
@@ -512,9 +519,8 @@ void startGameWithBot(string word, string hint) {
                                 botPoints += pointsOnWheel[onWheel - 4];
                             }
 
-                            // Open ALL instances of the letter for Bot
                             for (int i = 0; i < 7; i++) {
-                                if (tolower(word[i]) == tolower(botLetter)) {
+                                if (word[i] == botLetter) {
                                     openedLetters[i] = word[i];
                                 }
                             }
@@ -596,6 +602,7 @@ void startGame1v1(string word, string hint) {
                 // cout << word << endl;
                 do {
                     screenClear();
+                    whoseTurn(1);
                     showGameMenu(openedLetters, hint, player1Points, player2Points);
                     cin >> input;
                 } while (input < 0 || input > 3);
@@ -731,6 +738,7 @@ void startGame1v1(string word, string hint) {
                // cout << word << endl;
                 do {
                     screenClear();
+                    whoseTurn(2);
                     showGameMenu(openedLetters, hint, player1Points, player2Points);
                     cin >> input;
                 } while (input < 0 || input > 3);
